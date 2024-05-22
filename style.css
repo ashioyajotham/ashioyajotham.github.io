@@ -22,6 +22,21 @@ header {
     justify-content: center; /* Center horizontally */
 }
 
+/* ... your existing styles ... */
+
+main {
+    /* ... your existing styles ... */
+    padding: 30px; /* Increase padding */
+}
+
+h2 {
+    margin-bottom: 15px; /* Add space below the heading */
+}
+
+p {
+    margin-bottom: 15px; /* Add space between paragraphs */
+}
+
 header img {
     width: 200px;  
     height: auto;
