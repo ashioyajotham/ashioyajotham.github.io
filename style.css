@@ -29,4 +29,23 @@ header img {
     margin-right: 20px; 
 }
 
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace; /* Choosing a distinct font */
+}
+
+header h1 {
+    font-size: 2.5em; /* Make the logo text bigger */
+    margin-bottom: 0.2em; /* Adjust spacing below the logo */
+}
+
+header h1 span {
+    font-size: 0.7em; /* Make the "subtitle" smaller */
+    font-weight: normal; 
+    margin-left: 0.5em; /* Add spacing between name and title */
+}
+
 /* Rest of your CSS code (nav, main, footer, etc.) */
