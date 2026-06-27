@@ -332,31 +332,6 @@ html:not(.dark) .pixel-grid {
   color: var(--px-pink);
 }
 
-/* ═══════════ CHARACTER SHEET ═══════════ */
-.char-sheet {
-  border: 3px solid var(--px-green);
-  position: relative;
-}
-.char-sheet::before,
-.char-sheet::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--px-green);
-}
-.char-sheet::before { top: -3px; left: -3px; }
-.char-sheet::after { top: -3px; right: -3px; }
-.char-sheet .corner-bl,
-.char-sheet .corner-br {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--px-green);
-}
-.char-sheet .corner-bl { bottom: -3px; left: -3px; }
-.char-sheet .corner-br { bottom: -3px; right: -3px; }
-
 /* ═══════════ PIXEL DIVIDER ═══════════ */
 .pixel-divider {
   border: none;
