@@ -26,6 +26,7 @@ const PROJECTS = [
     status: 'FEATURED',
     variant: 'green' as const,
     year: '2025',
+    thumb: 'https://picsum.photos/seed/cot-viz-pixel/800/450.jpg',
   },
   {
     title: 'EVALUATION AWARENESS DETECTION',
@@ -36,6 +37,7 @@ const PROJECTS = [
     status: 'FEATURED',
     variant: 'blue' as const,
     year: '2025',
+    thumb: 'https://picsum.photos/seed/eval-awareness-pixel/800/450.jpg',
   },
   {
     title: 'GREATER THAN CIRCUIT',
@@ -45,6 +47,7 @@ const PROJECTS = [
     status: 'RESEARCH',
     variant: 'green' as const,
     year: '2024',
+    thumb: 'https://picsum.photos/seed/gt-circuit-pixel/800/450.jpg',
   },
   {
     title: 'EXPLORING SAES',
@@ -55,6 +58,7 @@ const PROJECTS = [
     status: 'RESEARCH',
     variant: 'gold' as const,
     year: '2024',
+    thumb: 'https://picsum.photos/seed/sae-exploring-pixel/800/450.jpg',
   },
   {
     title: 'VALUE-ALIGNED CONFABULATION (VAC)',
@@ -64,6 +68,7 @@ const PROJECTS = [
     status: 'RESEARCH',
     variant: 'pink' as const,
     year: '2024',
+    thumb: 'https://picsum.photos/seed/vac-research-pixel/800/450.jpg',
   },
   {
     title: 'FINGPT TRADER',
@@ -74,6 +79,7 @@ const PROJECTS = [
     status: 'ACTIVE',
     variant: 'blue' as const,
     year: '2025',
+    thumb: 'https://picsum.photos/seed/fingpt-trader-pixel/800/450.jpg',
   },
   {
     title: 'WEATHER FORECASTING WITH LORA',
@@ -83,6 +89,7 @@ const PROJECTS = [
     status: 'WRITING UP',
     variant: 'gold' as const,
     year: '2025',
+    thumb: 'https://picsum.photos/seed/weather-lora-pixel/800/450.jpg',
   },
   {
     title: 'AI COMPUTE GROWTH SIMULATOR',
@@ -92,12 +99,14 @@ const PROJECTS = [
     status: 'TOOL',
     variant: 'green' as const,
     year: '2025',
+    thumb: 'https://picsum.photos/seed/ai-compute-pixel/800/450.jpg',
   },
   {
     title: 'ELIMU RESEARCH ASSISTANT',
     desc: 'AI-powered tool enabling Kenyan educators to generate locally relevant, credibly sourced educational content using the ReAct framework. Available on PyPI.',
     tags: ['Python', 'ReAct', 'EdTech'],
     link: 'https://github.com/ashioyajotham/Elimu-Research-Assistant',
+    thumb: 'https://picsum.photos/seed/elimu-research-pixel/800/450.jpg',
     pypi: 'https://pypi.org/project/elimu-research-assistant/',
     status: 'TOOL',
     variant: 'pink' as const,
@@ -223,7 +232,7 @@ function Navigation({ onMenuToggle }: { onMenuToggle: () => void }) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-px-bg/95 border-b-2 border-px-dark" style={{ backdropFilter: 'blur(4px)' }}>
       <div className="max-w-6xl mx-auto h-16 px-4 md:px-6 flex items-center justify-between">
         <a href="#" className="font-pixel text-xs md:text-sm text-px-green tracking-wider">
-          <span className="text-px-gold">▶</span> ASHIOYA
+          <span className="text-px-gold">▶</span> ashioyajotham
         </a>
         <div className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
@@ -343,8 +352,8 @@ function Hero() {
 
         {/* Name */}
         <h1 className="anim-fade anim-d2 font-pixel text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wider leading-relaxed mb-4">
-          <span className="text-px-white">ASHIOYA</span><br />
-          <span className="text-px-green" style={{ textShadow: '0 0 20px color-mix(in srgb, var(--px-green) 50%, transparent)' }}>JOTHAM</span>
+          <span className="text-px-white">ASHIOYA</span> <span className="text-px-green" style={{ textShadow: '0 0 20px color-mix(in srgb, var(--px-green) 50%, transparent)' }}>JOTHAM</span><br />
+          <span className="text-px-white text-base sm:text-lg md:text-xl">VICTOR</span>
         </h1>
 
         {/* Subtitle */}
@@ -392,106 +401,52 @@ function About() {
           <hr className="pixel-divider max-w-xs mx-auto mt-4" />
         </div>
 
-        <div className="reveal grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Character Sheet */}
-          <div className="char-sheet bg-px-bg p-0 overflow-hidden">
-            <div className="corner-bl" />
-            <div className="corner-br" />
-            <div className="p-0 overflow-hidden" style={{ background: 'color-mix(in srgb, var(--px-green) 10%, var(--px-bg))', borderBottom: '2px solid color-mix(in srgb, var(--px-green) 30%, transparent)' }}>
-              <div className="px-5 py-3 flex items-center justify-between">
-                <span className="font-pixel text-[9px] text-px-green tracking-wider">CHARACTER SHEET</span>
-                <span className="font-pixel text-[7px] text-px-dim">LV. ??</span>
-              </div>
-            </div>
-            <div className="p-5">
-              {/* Avatar area */}
-              <div className="flex items-center gap-4 mb-5 pb-5 border-b-2 border-dashed" style={{ borderColor: 'color-mix(in srgb, var(--px-dim) 30%, transparent)' }}>
-                <div className="w-16 h-16 border-2 border-px-green flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'color-mix(in srgb, var(--px-green) 5%, var(--px-bg))' }}>
-                  <span className="text-3xl">🧠</span>
-                </div>
-                <div>
-                  <div className="font-pixel text-[10px] text-px-white tracking-wider mb-1">ASHIOYA JOTHAM</div>
-                  <div className="font-pixel text-[7px] text-px-gold tracking-wider">CLASS: AI RESEARCHER</div>
-                  <div className="font-pixel text-[7px] text-px-blue tracking-wider mt-0.5">SPECIALTY: MECH INTERP</div>
-                </div>
-              </div>
+        <div className="reveal max-w-3xl mx-auto space-y-6">
+          <p className="text-px-gray text-xl leading-relaxed">
+            I&apos;m an ML researcher focused on AI safety, reasoning mechanisms, and mitigating hallucinations in
+            language models. Currently exploring technical AI safety at{' '}
+            <a href="https://www.bluedot.org/" target="_blank" rel="noopener noreferrer" className="text-px-green hover:underline">Bluedot</a>.
+          </p>
+          <p className="text-px-gray text-xl leading-relaxed">
+            I also lead partnerships at{' '}
+            <a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" className="text-px-gold hover:underline">GDG Pwani</a> and
+            am a <span className="text-px-blue">Google Developer Expert</span> in AI.
+          </p>
 
-              {/* Affiliations - no stats bars */}
-              <div className="space-y-2 mb-5">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-px-green flex-shrink-0" />
-                  <span className="text-px-gray text-base">AI Safety Researcher @ <a href="https://www.bluedot.org/" target="_blank" rel="noopener noreferrer" className="text-px-green hover:underline">Bluedot</a></span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-px-blue flex-shrink-0" />
-                  <span className="text-px-gray text-base">Junior Research Fellow @ <a href="https://ilinaprogram.org/" target="_blank" rel="noopener noreferrer" className="text-px-blue hover:underline">ILINA Program</a></span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-px-gold flex-shrink-0" />
-                  <span className="text-px-gray text-base"><a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" className="text-px-gold hover:underline">GDG Pwani</a> Partnerships Lead</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-px-pink flex-shrink-0" />
-                  <span className="text-px-gray text-base">Google Developer Expert — AI</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-px-purple flex-shrink-0" />
-                  <span className="text-px-gray text-base">Researcher @ <a href="https://www.amnestykenya.org/rightup-2-0/" target="_blank" rel="noopener noreferrer" className="text-px-purple hover:underline">Amnesty Kenya</a> RightUp 2.0</span>
-                </div>
-              </div>
-
-              {/* Traits */}
-              <div className="grid grid-cols-2 gap-2">
-                <div className="border border-px-dim p-2 text-center" style={{ borderColor: 'color-mix(in srgb, var(--px-dim) 30%, transparent)' }}>
-                  <div className="font-pixel text-[7px] text-px-dim mb-0.5">ALIGNMENT</div>
-                  <div className="font-pixel text-[8px] text-px-green">LAWFUL GOOD</div>
-                </div>
-                <div className="border border-px-dim p-2 text-center" style={{ borderColor: 'color-mix(in srgb, var(--px-dim) 30%, transparent)' }}>
-                  <div className="font-pixel text-[7px] text-px-dim mb-0.5">STATUS</div>
-                  <div className="font-pixel text-[8px] text-px-gold">RESEARCHING</div>
-                </div>
-                <div className="border border-px-dim p-2 text-center" style={{ borderColor: 'color-mix(in srgb, var(--px-dim) 30%, transparent)' }}>
-                  <div className="font-pixel text-[7px] text-px-dim mb-0.5">LOCATION</div>
-                  <div className="font-pixel text-[8px] text-px-blue">KENYA</div>
-                </div>
-                <div className="border border-px-dim p-2 text-center" style={{ borderColor: 'color-mix(in srgb, var(--px-dim) 30%, transparent)' }}>
-                  <div className="font-pixel text-[7px] text-px-dim mb-0.5">ALMA MATER</div>
-                  <div className="font-pixel text-[8px] text-px-pink">KABARAK U</div>
-                </div>
-              </div>
-            </div>
+          {/* Title badges */}
+          <div className="flex flex-wrap gap-3 pt-2">
+            <a href="https://www.bluedot.org/" target="_blank" rel="noopener noreferrer" className="pixel-tag hover:opacity-80 transition-opacity">
+              🏛 BLUEDOT RESEARCHER
+            </a>
+            <span className="pixel-tag-blue pixel-tag">
+              🎓 GOOGLE DEVELOPER EXPERT — AI
+            </span>
+            <a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" className="pixel-tag-gold pixel-tag hover:opacity-80 transition-opacity">
+              🌍 GDG PWANI LEAD
+            </a>
+            <a href="https://ilinaprogram.org/" target="_blank" rel="noopener noreferrer" className="pixel-tag-pink pixel-tag hover:opacity-80 transition-opacity">
+              🔬 ILINA FELLOW
+            </a>
           </div>
 
-          {/* Bio Text */}
-          <div className="space-y-5">
-            <p className="text-px-gray text-lg leading-relaxed">
-              I&apos;m a researcher passionate about making AI systems more{' '}
-              <span className="text-px-green">interpretable</span> and{' '}
-              <span className="text-px-green">safe</span>. My work sits at the intersection of{' '}
-              <span className="text-px-blue">mechanistic interpretability</span>,{' '}
-              <span className="text-px-blue">chain-of-thought reasoning</span>, and{' '}
-              <span className="text-px-pink">AI alignment</span>.
-            </p>
-            <p className="text-px-gray text-lg leading-relaxed">
-              Currently at <a href="https://www.bluedot.org/" target="_blank" rel="noopener noreferrer" className="text-px-green hover:underline">Bluedot</a>,
-              investigating how faithful chain-of-thought reasoning emerges in transformer models — probing not just
-              what models <em>say</em>, but whether their internal computations actually <em>reflect</em> the reasoning
-              they output.
-            </p>
-            <p className="text-px-gray text-lg leading-relaxed">
-              I believe that understanding the mechanistic basis of reasoning is crucial for building
-              AI systems we can truly trust. I also lead partnerships at{' '}
-              <a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" className="text-px-gold hover:underline">GDG Pwani</a> and
-              am a Google Developer Expert in AI.
-            </p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              <span className="pixel-tag">MECH INTERP</span>
-              <span className="pixel-tag-blue pixel-tag">AI SAFETY</span>
-              <span className="pixel-tag-gold pixel-tag">COT</span>
-              <span className="pixel-tag-pink pixel-tag">CIRCUITS</span>
-              <span className="pixel-tag">ALIGNMENT</span>
-            </div>
+          {/* Social row */}
+          <div className="flex items-center gap-4 text-base pt-2">
+            <a href="mailto:victorashioya960@gmail.com" className="text-px-blue hover:underline">Email</a>
+            <span className="text-px-dim">·</span>
+            <a href="https://twitter.com/ashioyajotham_" target="_blank" rel="noopener noreferrer" className="text-px-blue hover:underline">X</a>
+            <span className="text-px-dim">·</span>
+            <a href="https://github.com/ashioyajotham" target="_blank" rel="noopener noreferrer" className="text-px-blue hover:underline">GitHub</a>
+            <span className="text-px-dim">·</span>
+            <a href="https://www.linkedin.com/in/ashioyajotham/" target="_blank" rel="noopener noreferrer" className="text-px-blue hover:underline">LinkedIn</a>
+          </div>
+
+          {/* Research interests */}
+          <div className="flex flex-wrap gap-2 pt-4">
+            <span className="pixel-tag">MECH INTERP</span>
+            <span className="pixel-tag-blue pixel-tag">AI SAFETY</span>
+            <span className="pixel-tag-gold pixel-tag">COT</span>
+            <span className="pixel-tag-pink pixel-tag">CIRCUITS</span>
+            <span className="pixel-tag">ALIGNMENT</span>
           </div>
         </div>
       </div>
@@ -525,8 +480,14 @@ function Research() {
         <div className="reveal pixel-card overflow-hidden mb-10">
           <div className="grid grid-cols-1 lg:grid-cols-5">
             <div className="lg:col-span-2 relative overflow-hidden">
-              <div className="aspect-square lg:aspect-auto lg:h-full bg-px-surface flex items-center justify-center">
-                <div className="text-8xl opacity-20 pixel-img">🧪</div>
+              <div className="aspect-video lg:aspect-auto lg:h-full bg-px-surface overflow-hidden">
+                <img
+                  src="https://picsum.photos/seed/cot-circuit-8bit/600/600.jpg"
+                  alt="CoT Research"
+                  className="w-full h-full object-cover opacity-25 pixel-img"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-px-bg/90 hidden lg:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-px-bg to-transparent lg:hidden" />
               </div>
               <div className="absolute top-4 left-4 font-pixel text-[7px] text-px-green bg-px-bg/80 px-2 py-1 border border-px-green">
                 ★ FEATURED — TOP 5 BLUEDOT DEMO DAY
@@ -676,15 +637,32 @@ function Projects() {
           {PROJECTS.map((project, i) => (
             <div
               key={project.title}
-              className={`reveal ${getCardClass(project.variant)} p-5`}
+              className={`reveal ${getCardClass(project.variant)} overflow-hidden`}
               style={{ transitionDelay: `${i * 0.05}s` }}
             >
-              <div className="flex items-center justify-between mb-3">
-                <span className={`${getStatusClass(project.status)}`} style={{ fontSize: '6px' }}>
-                  {project.status === 'FEATURED' ? '★' : ''} {project.status}
-                </span>
-                <span className="font-terminal text-px-dim text-sm">{project.year}</span>
-              </div>
+              {/* Thumbnail */}
+              {project.thumb && (
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={project.thumb}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-25 pixel-img"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-px-bg via-px-bg/50 to-transparent" />
+                  <div className="absolute top-3 left-3 pixel-tag" style={{ fontSize: '6px' }}>
+                    {project.status === 'FEATURED' ? '★' : ''} {project.status}
+                  </div>
+                </div>
+              )}
+              <div className="p-5">
+              {!project.thumb && (
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`${getStatusClass(project.status)}`} style={{ fontSize: '6px' }}>
+                    {project.status === 'FEATURED' ? '★' : ''} {project.status}
+                  </span>
+                  <span className="font-terminal text-px-dim text-sm">{project.year}</span>
+                </div>
+              )}
               <h3 className="font-pixel text-[10px] text-px-white tracking-wider mb-2">{project.title}</h3>
               <p className="text-px-gray text-base leading-relaxed mb-4">{project.desc}</p>
               <div className="flex flex-wrap gap-1.5 mb-4">
@@ -1019,7 +997,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="font-pixel text-[9px] text-px-green">▶</span>
-            <span className="font-pixel text-[9px] text-px-white tracking-wider">ASHIOYA</span>
+            <span className="font-pixel text-[9px] text-px-white tracking-wider">ashioyajotham</span>
             <span className="text-px-dim text-sm">│</span>
             <span className="font-terminal text-px-dim text-sm">AI Safety Research</span>
           </div>
