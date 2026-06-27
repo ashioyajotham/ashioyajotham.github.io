@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashioya Jotham — 8-Bit AI Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        terminal: ['"VT323"', 'monospace'],
+                    },
+                    colors: {
+                        'px-bg': '#0D0D0D',
+                        'px-surface': '#141414',
+                        'px-surface2': '#1A1A1A',
+                        'px-green': '#00FF41',
+                        'px-green-dark': '#004D00',
+                        'px-green-mid': '#009926',
+                        'px-gold': '#FFD700',
+                        'px-blue': '#00BFFF',
+                        'px-pink': '#FF6B9D',
+                        'px-purple': '#B266FF',
+                        'px-red': '#FF0040',
+                        'px-white': '#E8E8E8',
+                        'px-gray': '#888888',
+                        'px-dim': '#444444',
+                        'px-dark': '#1A1A1A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'VT323', monospace;
+            background: #0D0D0D;
+            color: #E8E8E8;
+            overflow-x: hidden;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Scanline Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.08) 2px,
+                rgba(0,0,0,0.08) 4px
+            );
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Pixel Grid Background */
+        .pixel-grid {
+            background-image:
+                linear-gradient(rgba(0,255,65,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,65,0.015) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Pixelated images */
+        .pixel-img {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        /* Pixel Card */
+        .pixel-card {
+            border: 3px solid rgba(0,255,65,0.25);
+            background: rgba(0,255,65,0.02);
+            box-shadow: 6px 6px 0 0 rgba(0,0,0,0.9);
+            transition: all 0.15s steps(3);
+        }
+        .pixel-card:hover {
+            border-color: rgba(0,255,65,0.5);
+            box-shadow: 4px 4px 0 0 rgba(0,0,0,0.9);
+            transform: translate(2px, 2px);
+        }
+
+        /* Pixel Card Gold Variant */
+        .pixel-card-gold {
+            border-color: rgba(255,215,0,0.25);
+            background: rgba(255,215,0,0.02);
+        }
+        .pixel-card-gold:hover {
+            border-color: rgba(255,215,0,0.5);
+        }
+
+        /* Pixel Card Blue Variant */
+        .pixel-card-blue {
+            border-color: rgba(0,191,255,0.25);
+            background: rgba(0,191,255,0.02);
+        }
+        .pixel-card-blue:hover {
+            border-color: rgba(0,191,255,0.5);
+        }
+
+        /* Pixel Button Primary */
+        .pixel-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            border: 3px solid #00FF41;
+            background: #00FF41;
+            color: #000;
+            padding: 12px 24px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 0 #004D00;
+            transition: all 0.1s steps(2);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pixel-btn:hover {
+            box-shadow: 2px 2px 0 0 #004D00;
+            transform: translate(2px, 2px);
+            background: #33FF66;
+        }
+        .pixel-btn:active {
+            box-shadow: 0 0 0 0 #004D00;
+            transform: translate(4px, 4px);
+        }
+
+        /* Pixel Button Secondary */
+        .pixel-btn-ghost {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            border: 3px solid rgba(0,255,65,0.4);
+            background: transparent;
+            color: #00FF41;
+            padding: 12px 24px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 0 rgba(0,0,0,0.6);
+            transition: all 0.1s steps(2);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pixel-btn-ghost:hover {
+            background: rgba(0,255,65,0.1);
+            box-shadow: 2px 2px 0 0 rgba(0,0,0,0.6);
+            transform: translate(2px, 2px);
+        }
+
+        /* Pixel Button Small */
+        .pixel-btn-sm {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            border: 2px solid #00FF41;
+            background: #00FF41;
+            color: #000;
+            padding: 8px 14px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 0 #004D00;
+            transition: all 0.1s steps(2);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pixel-btn-sm:hover {
+            box-shadow: 1px 1px 0 0 #004D00;
+            transform: translate(2px, 2px);
+        }
+
+        /* Pixel Tag */
+        .pixel-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 7px;
+            border: 2px solid rgba(0,255,65,0.4);
+            color: #00FF41;
+            padding: 4px 8px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .pixel-tag-gold {
+            border-color: rgba(255,215,0,0.4);
+            color: #FFD700;
+        }
+        .pixel-tag-blue {
+            border-color: rgba(0,191,255,0.4);
+            color: #00BFFF;
+        }
+        .pixel-tag-pink {
+            border-color: rgba(255,107,157,0.4);
+            color: #FF6B9D;
+        }
+
+        /* HP/MP Bar */
+        .stat-bar-track {
+            background: #1A1A1A;
+            border: 2px solid #333;
+            height: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-bar-fill {
+            height: 100%;
+            transition: width 1.5s steps(20);
+            position: relative;
+        }
+        .stat-bar-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 4px,
+                rgba(0,0,0,0.3) 4px,
+                rgba(0,0,0,0.3) 6px
+            );
+        }
+        .stat-bar-green { background: #00FF41; }
+        .stat-bar-blue { background: #00BFFF; }
+        .stat-bar-gold { background: #FFD700; }
+
+        /* Animations - Step based */
+        @keyframes pixelFadeIn {
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .anim-fade {
+            opacity: 0;
+            animation: pixelFadeIn 0.6s steps(8) forwards;
+        }
+        .anim-d1 { animation-delay: 0.15s; }
+        .anim-d2 { animation-delay: 0.3s; }
+        .anim-d3 { animation-delay: 0.45s; }
+        .anim-d4 { animation-delay: 0.6s; }
+        .anim-d5 { animation-delay: 0.75s; }
+        .anim-d6 { animation-delay: 0.9s; }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.6s steps(8);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Blink */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink { animation: blink 0.8s step-end infinite; }
+
+        /* Pulse dot */
+        @keyframes pulse-pixel {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,65,0.6); }
+            50% { box-shadow: 0 0 0 4px rgba(0,255,65,0); }
+        }
+        .pulse-pixel { animation: pulse-pixel 2s steps(4) infinite; }
+
+        /* Float */
+        @keyframes pixel-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .pixel-float { animation: pixel-float 3s steps(12) infinite; }
+
+        /* Sparkle */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Pixel Art Brain */
+        .pixel-brain {
+            width: 4px;
+            height: 4px;
+            background: #00FF41;
+            box-shadow:
+                4px 0 0 #00FF41, -4px 0 0 #00FF41,
+                8px 0 0 #00FF41, -8px 0 0 #00FF41,
+                -4px -4px 0 #00FF41, 0 -4px 0 #00FF41, 4px -4px 0 #00FF41,
+                12px 0 0 #00FF41, -12px 0 0 #00FF41,
+                16px 0 0 #00FF41, -16px 0 0 #00FF41,
+                -12px -4px 0 #00FF41, -8px -4px 0 #00FF41,
+                8px -4px 0 #00FF41, 12px -4px 0 #00FF41,
+                -16px 4px 0 #00FF41, -12px 4px 0 #00FF41,
+                -8px 4px 0 #00FF41, -4px 4px 0 #00FF41,
+                0 4px 0 #00FF41, 4px 4px 0 #00FF41,
+                8px 4px 0 #00FF41, 12px 4px 0 #00FF41, 16px 4px 0 #00FF41,
+                -12px 8px 0 #00FF41, -8px 8px 0 #00FF41,
+                -4px 8px 0 #00FF41, 0 8px 0 #00FF41,
+                4px 8px 0 #00FF41, 8px 8px 0 #00FF41, 12px 8px 0 #00FF41,
+                -8px 12px 0 #00FF41, -4px 12px 0 #00FF41,
+                0 12px 0 #00FF41, 4px 12px 0 #00FF41, 8px 12px 0 #00FF41,
+                -4px 16px 0 #00FF41, 0 16px 0 #00FF41, 4px 16px 0 #00FF41,
+                0 20px 0 #00FF41;
+            animation: sparkle 3s steps(6) infinite;
+        }
+
+        /* Pixel Star Decorations */
+        .pixel-star {
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            box-shadow:
+                4px 0 0 #FFD700, -4px 0 0 #FFD700,
+                0 4px 0 #FFD700, 0 -4px 0 #FFD700;
+        }
+
+        /* Nav */
+        .nav-link-pixel {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.15s steps(3);
+            position: relative;
+        }
+        .nav-link-pixel:hover { color: #00FF41; }
+        .nav-link-pixel::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00FF41;
+            transition: width 0.2s steps(4);
+        }
+        .nav-link-pixel:hover::after { width: 100%; }
+
+        /* Form Inputs */
+        .pixel-input {
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            background: #0D0D0D;
+            border: 2px solid #333;
+            color: #E8E8E8;
+            padding: 10px 14px;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.15s steps(3);
+        }
+        .pixel-input:focus {
+            border-color: #00FF41;
+        }
+        .pixel-input::placeholder {
+            color: #444;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            padding: 12px 20px;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s steps(5);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            border: 3px solid #00FF41;
+            background: #0D0D0D;
+            color: #00FF41;
+            box-shadow: 4px 4px 0 0 #004D00;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.2s steps(5);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0D0D0D; }
+        ::-webkit-scrollbar-thumb { background: #333; border: 1px solid #0D0D0D; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Selection */
+        ::selection {
+            background: rgba(0,255,65,0.3);
+            color: #fff;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* Character Sheet */
+        .char-sheet {
+            border: 3px solid #00FF41;
+            position: relative;
+        }
+        .char-sheet::before,
+        .char-sheet::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00FF41;
+        }
+        .char-sheet::before { top: -3px; left: -3px; }
+        .char-sheet::after { top: -3px; right: -3px; }
+        .char-sheet .corner-bl,
+        .char-sheet .corner-br {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00FF41;
+        }
+        .char-sheet .corner-bl { bottom: -3px; left: -3px; }
+        .char-sheet .corner-br { bottom: -3px; right: -3px; }
+
+        /* Pixel divider */
+        .pixel-divider {
+            border: none;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                #00FF41 0px,
+                #00FF41 8px,
+                transparent 8px,
+                transparent 12px
+            );
+            opacity: 0.3;
+        }
+
+        /* Responsive pixel font sizing */
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+        }
+    </style>
+</head>
+<body class="pixel-grid">
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <span id="toast-msg"></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-px-bg/95 border-b-2 border-px-dim" style="backdrop-filter: blur(4px);">
+        <div class="max-w-6xl mx-auto h-16 px-4 md:px-6 flex items-center justify-between">
+            <a href="#" class="font-pixel text-xs md:text-sm text-px-green tracking-wider">
+                <span class="text-px-gold">▶</span> ASHIOYA
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link-pixel">ABOUT</a>
+                <a href="#research" class="nav-link-pixel">RESEARCH</a>
+                <a href="#projects" class="nav-link-pixel">PROJECTS</a>
+                <a href="#quest-log" class="nav-link-pixel">QUEST LOG</a>
+                <a href="#contact" class="nav-link-pixel">CONTACT</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://github.com/ashioyajotham" target="_blank" class="pixel-btn-ghost text-[8px] px-3 py-2">
+                    GITHUB
+                </a>
+                <button id="menu-btn" class="md:hidden text-px-green p-2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <rect y="2" width="20" height="3" rx="0"/>
+                        <rect y="8" width="20" height="3" rx="0"/>
+                        <rect y="14" width="20" height="3" rx="0"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-50 bg-px-bg flex flex-col items-center justify-center gap-8 border-l-2 border-px-green">
+        <button id="close-menu" class="absolute top-5 right-5 text-px-green text-2xl font-pixel">✕</button>
+        <a href="#about" class="font-pixel text-sm text-px-gray hover:text-px-green transition-colors mobile-link">ABOUT</a>
+        <a href="#research" class="font-pixel text-sm text-px-gray hover:text-px-green transition-colors mobile-link">RESEARCH</a>
+        <a href="#projects" class="font-pixel text-sm text-px-gray hover:text-px-green transition-colors mobile-link">PROJECTS</a>
+        <a href="#quest-log" class="font-pixel text-sm text-px-gray hover:text-px-green transition-colors mobile-link">QUEST LOG</a>
+        <a href="#contact" class="font-pixel text-sm text-px-gray hover:text-px-green transition-colors mobile-link">CONTACT</a>
+    </div>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <!-- Pixel Sparkle Decorations -->
+        <div class="pixel-star absolute top-32 left-[15%]" style="animation: sparkle 2.5s steps(5) infinite;"></div>
+        <div class="pixel-star absolute top-48 right-[20%]" style="animation: sparkle 3s steps(5) infinite 0.5s;"></div>
+        <div class="pixel-star absolute bottom-40 left-[25%]" style="animation: sparkle 2s steps(5) infinite 1s;"></div>
+        <div class="pixel-star absolute top-60 left-[60%]" style="animation: sparkle 3.5s steps(5) infinite 0.3s; background: #00BFFF; box-shadow: 4px 0 0 #00BFFF, -4px 0 0 #00BFFF, 0 4px 0 #00BFFF, 0 -4px 0 #00BFFF;"></div>
+        <div class="pixel-star absolute bottom-60 right-[30%]" style="animation: sparkle 2.8s steps(5) infinite 0.7s; background: #FF6B9D; box-shadow: 4px 0 0 #FF6B9D, -4px 0 0 #FF6B9D, 0 4px 0 #FF6B9D, 0 -4px 0 #FF6B9D;"></div>
+
+        <!-- Green glow blob -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-px-green/5 blur-[100px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-20 text-center">
+            <!-- Status -->
+            <div class="anim-fade flex items-center justify-center gap-3 mb-8">
+                <span class="w-3 h-3 bg-px-green pulse-pixel"></span>
+                <span class="font-pixel text-[8px] text-px-gray tracking-wider">OPEN TO COLLABORATION</span>
+            </div>
+
+            <!-- Pixel Brain Art -->
+            <div class="anim-fade anim-d1 flex justify-center mb-8">
+                <div class="pixel-brain pixel-float"></div>
+            </div>
+
+            <!-- Name -->
+            <h1 class="anim-fade anim-d2 font-pixel text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wider leading-relaxed mb-4">
+                <span class="text-px-white">ASHIOYA</span><br>
+                <span class="text-px-green" style="text-shadow: 0 0 20px rgba(0,255,65,0.5);">JOTHAM</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="anim-fade anim-d3 text-xl md:text-2xl text-px-gray leading-relaxed max-w-2xl mx-auto mb-2">
+                Exploring the mechanics of reasoning in
+                <span class="text-px-green">language models</span> through
+                <span class="text-px-blue">mechanistic interpretability</span>
+            </p>
+
+            <!-- Typed tagline -->
+            <div class="anim-fade anim-d4 h-8 mb-10 flex items-center justify-center">
+                <span class="text-px-dim text-lg font-terminal">></span>
+                <span id="typed-text" class="text-lg font-terminal text-px-gray ml-2"></span>
+                <span class="cursor-blink text-px-green ml-0.5 text-lg">█</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="anim-fade anim-d5 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#research" class="pixel-btn">
+                    <span>▸</span> VIEW RESEARCH
+                </a>
+                <a href="https://github.com/ashioyajotham" target="_blank" class="pixel-btn-ghost">
+                    <span>◆</span> GITHUB
+                </a>
+            </div>
+
+            <!-- Scroll -->
+            <div class="anim-fade anim-d6 mt-16 flex flex-col items-center gap-2">
+                <span class="font-pixel text-[7px] text-px-dim tracking-widest">SCROLL DOWN</span>
+                <div class="w-4 h-6 border-2 border-px-dim flex items-start justify-center p-0.5 mt-1">
+                    <div class="w-2 h-2 bg-px-green" style="animation: blink 1.2s step-end infinite;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ ABOUT (Character Sheet) ═══════════ -->
+    <section id="about" class="relative py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <!-- Section Label -->
+            <div class="reveal text-center mb-14">
+                <span class="font-pixel text-[8px] text-px-dim tracking-[0.3em]">── SECTION 01 ──</span>
+                <h2 class="font-pixel text-lg md:text-xl text-px-green mt-3 tracking-wider">ABOUT</h2>
+                <hr class="pixel-divider max-w-xs mx-auto mt-4">
+            </div>
+
+            <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <!-- Character Sheet -->
+                <div class="char-sheet bg-px-bg p-0 overflow-hidden">
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+                    <!-- Header -->
+                    <div class="bg-px-green/10 border-b-2 border-px-green/30 px-5 py-3 flex items-center justify-between">
+                        <span class="font-pixel text-[9px] text-px-green tracking-wider">CHARACTER SHEET</span>
+                        <span class="font-pixel text-[7px] text-px-dim">LV. ??</span>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-5">
+                        <!-- Avatar area -->
+                        <div class="flex items-center gap-4 mb-5 pb-5 border-b-2 border-dashed border-px-dim/30">
+                            <div class="w-16 h-16 border-2 border-px-green bg-px-green/5 flex items-center justify-center flex-shrink-0">
+                                <span class="text-3xl">🧠</span>
+                            </div>
+                            <div>
+                                <div class="font-pixel text-[10px] text-px-white tracking-wider mb-1">ASHIOYA JOTHAM</div>
+                                <div class="font-pixel text-[7px] text-px-gold tracking-wider">CLASS: AI RESEARCHER</div>
+                                <div class="font-pixel text-[7px] text-px-blue tracking-wider mt-0.5">SPECIALTY: MECH INTERP</div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Stats -->
+                        <div class="space-y-3 mb-5">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-pixel text-[7px] text-px-green">HP (MOTIVATION)</span>
+                                    <span class="font-pixel text-[7px] text-px-green">████████░░ 80</span>
+                                </div>
+                                <div class="stat-bar-track">
+                                    <div class="stat-bar-fill stat-bar-green char-sheet-bar" data-width="80%" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-pixel text-[7px] text-px-blue">MP (COMPUTE)</span>
+                                    <span class="font-pixel text-[7px] text-px-blue">██████░░░░ 60</span>
+                                </div>
+                                <div class="stat-bar-track">
+                                    <div class="stat-bar-fill stat-bar-blue char-sheet-bar" data-width="60%" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-pixel text-[7px] text-px-gold">XP (PAPERS)</span>
+                                    <span class="font-pixel text-[7px] text-px-gold">████████░░ 85</span>
+                                </div>
+                                <div class="stat-bar-track">
+                                    <div class="stat-bar-fill stat-bar-gold char-sheet-bar" data-width="85%" style="width:0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Traits -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="border border-px-dim/30 p-2 text-center">
+                                <div class="font-pixel text-[7px] text-px-dim mb-0.5">ALIGNMENT</div>
+                                <div class="font-pixel text-[8px] text-px-green">LAWFUL GOOD</div>
+                            </div>
+                            <div class="border border-px-dim/30 p-2 text-center">
+                                <div class="font-pixel text-[7px] text-px-dim mb-0.5">STATUS</div>
+                                <div class="font-pixel text-[8px] text-px-gold">RESEARCHING</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Text -->
+                <div class="space-y-5">
+                    <p class="text-px-gray text-lg leading-relaxed">
+                        I'm a researcher passionate about making AI systems more
+                        <span class="text-px-green">interpretable</span> and
+                        <span class="text-px-green">safe</span>. My work sits at the intersection of
+                        <span class="text-px-blue">mechanistic interpretability</span>,
+                        <span class="text-px-blue">chain-of-thought reasoning</span>, and
+                        <span class="text-px-pink">AI alignment</span>.
+                    </p>
+                    <p class="text-px-gray text-lg leading-relaxed">
+                        Currently investigating how faithful chain-of-thought reasoning emerges in transformer models — probing not just what models <em>say</em>, but whether their internal computations actually <em>reflect</em> the reasoning they output.
+                    </p>
+                    <p class="text-px-gray text-lg leading-relaxed">
+                        I believe that understanding the mechanistic basis of reasoning is crucial for building AI systems we can truly trust.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="pixel-tag">MECH INTERP</span>
+                        <span class="pixel-tag-blue pixel-tag">AI SAFETY</span>
+                        <span class="pixel-tag-gold pixel-tag">COT</span>
+                        <span class="pixel-tag-pink pixel-tag">CIRCUITS</span>
+                        <span class="pixel-tag">ALIGNMENT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ RESEARCH ═══════════ -->
+    <section id="research" class="relative py-20 lg:py-28 border-t-2 border-px-dim/20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="reveal text-center mb-14">
+                <span class="font-pixel text-[8px] text-px-dim tracking-[0.3em]">── SECTION 02 ──</span>
+                <h2 class="font-pixel text-lg md:text-xl text-px-green mt-3 tracking-wider">RESEARCH</h2>
+                <hr class="pixel-divider max-w-xs mx-auto mt-4">
+            </div>
+
+            <!-- Main Research Card -->
+            <div class="reveal pixel-card overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-5">
+                    <div class="lg:col-span-2 relative overflow-hidden">
+                        <div class="aspect-square lg:aspect-auto lg:h-full bg-px-surface">
+                            <img src="https://picsum.photos/seed/cot-circuit-8bit/600/600.jpg"
+                                 alt="CoT Research"
+                                 class="w-full h-full object-cover opacity-30 pixel-img">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-px-bg/90 hidden lg:block"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-px-bg to-transparent lg:hidden"></div>
+                            <!-- Overlay label -->
+                            <div class="absolute top-4 left-4 font-pixel text-[7px] text-px-green bg-px-bg/80 px-2 py-1 border border-px-green/30">
+                                ★ FEATURED
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+                        <div class="flex flex-wrap items-center gap-2 mb-4">
+                            <span class="pixel-tag">MECH INTERP</span>
+                            <span class="text-px-dim text-sm">│</span>
+                            <span class="font-terminal text-px-dim text-sm">2024</span>
+                        </div>
+                        <h3 class="font-pixel text-sm md:text-base text-px-white tracking-wider leading-relaxed mb-4">
+                            CHAIN-OF-THOUGHT FAITHFULNESS: A MECHANISTIC INTERPRETABILITY APPROACH
+                        </h3>
+                        <p class="text-px-gray text-lg leading-relaxed mb-5">
+                            Investigating whether language models actually perform the reasoning steps they generate in chain-of-thought, or if they merely produce plausible-looking token sequences. Using mechanistic interpretability tools to trace information flow through transformer layers.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs text-px-dim border border-px-dim/30 px-2 py-1 font-terminal">Transformer Circuits</span>
+                            <span class="text-xs text-px-dim border border-px-dim/30 px-2 py-1 font-terminal">Activation Patching</span>
+                            <span class="text-xs text-px-dim border border-px-dim/30 px-2 py-1 font-terminal">Probing</span>
+                            <span class="text-xs text-px-dim border border-px-dim/30 px-2 py-1 font-terminal">Faithfulness</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <a href="https://github.com/ashioyajotham/cot-faithfulness-mech-interp" target="_blank" class="pixel-btn-sm">
+                                ▸ GITHUB
+                            </a>
+                            <button onclick="copyToClipboard('ashioyajotham/cot-faithfulness-mech-interp')"
+                                    class="pixel-btn-ghost text-[8px] px-3 py-2" style="border-width: 2px; padding: 8px 12px; font-size: 8px;">
+                                ◈ COPY REPO
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="reveal pixel-card-blue pixel-card p-5">
+                    <div class="font-pixel text-lg text-px-blue mb-3">◎</div>
+                    <h4 class="font-pixel text-[9px] text-px-white tracking-wider mb-2">CIRCUIT DISCOVERY</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Identifying specific attention heads and MLP neurons that implement faithful reasoning vs. shortcut behavior.
+                    </p>
+                </div>
+                <div class="reveal pixel-card-gold pixel-card p-5" style="transition-delay: 0.1s;">
+                    <div class="font-pixel text-lg text-px-gold mb-3">⇄</div>
+                    <h4 class="font-pixel text-[9px] text-px-white tracking-wider mb-2">FAITHFUL VS. UNFAITHFUL</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Comparing activation patterns when models reason faithfully versus when they rely on memorized answers.
+                    </p>
+                </div>
+                <div class="reveal pixel-card p-5" style="transition-delay: 0.2s;">
+                    <div class="font-pixel text-lg text-px-pink mb-3">◈</div>
+                    <h4 class="font-pixel text-[9px] text-px-white tracking-wider mb-2">SAFETY IMPLICATIONS</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Understanding how unfaithful reasoning could lead to deceptive alignment and hidden capabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section id="projects" class="relative py-20 lg:py-28 border-t-2 border-px-dim/20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="reveal text-center mb-14">
+                <span class="font-pixel text-[8px] text-px-dim tracking-[0.3em]">── SECTION 03 ──</span>
+                <h2 class="font-pixel text-lg md:text-xl text-px-green mt-3 tracking-wider">PROJECTS</h2>
+                <hr class="pixel-divider max-w-xs mx-auto mt-4">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Project 1 -->
+                <div class="reveal pixel-card overflow-hidden">
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="https://picsum.photos/seed/cot-viz-pixel/800/450.jpg"
+                             alt="CoT Faithfulness"
+                             class="w-full h-full object-cover opacity-25 pixel-img">
+                        <div class="absolute inset-0 bg-gradient-to-t from-px-bg via-px-bg/50 to-transparent"></div>
+                        <div class="absolute top-3 left-3 pixel-tag" style="font-size: 6px;">★ FEATURED</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">COT-FAITHFULNESS-MECH-INTERP</h3>
+                        <p class="text-px-gray text-base leading-relaxed mb-4">
+                            Mechanistic interpretability analysis of CoT faithfulness. Includes activation patching, circuit analysis, and benchmarks.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Python</span>
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">PyTorch</span>
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">TransformerLens</span>
+                        </div>
+                        <a href="https://github.com/ashioyajotham/cot-faithfulness-mech-interp" target="_blank"
+                           class="font-pixel text-[8px] text-px-green hover:text-px-gold transition-colors tracking-wider">
+                            EXPLORE REPO ▸
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="reveal pixel-card-blue pixel-card overflow-hidden" style="transition-delay: 0.1s;">
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="https://picsum.photos/seed/atlas-pixel-8bit/800/450.jpg"
+                             alt="Reasoning Atlas"
+                             class="w-full h-full object-cover opacity-25 pixel-img">
+                        <div class="absolute inset-0 bg-gradient-to-t from-px-bg via-px-bg/50 to-transparent"></div>
+                        <div class="absolute top-3 left-3 pixel-tag-blue pixel-tag" style="font-size: 6px;">IN PROGRESS</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">REASONING CIRCUIT ATLAS</h3>
+                        <p class="text-px-gray text-base leading-relaxed mb-4">
+                            Interactive atlas mapping reasoning circuits across model scales. Visualizes how faithfulness circuits develop during training.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Python</span>
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Plotly</span>
+                            <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Streamlit</span>
+                        </div>
+                        <span class="font-pixel text-[8px] text-px-dim tracking-wider">🔒 COMING SOON</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="reveal pixel-card-gold pixel-card p-5" style="transition-delay: 0.15s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-pixel text-xl text-px-gold">⬡</span>
+                        <span class="pixel-tag-gold pixel-tag" style="font-size: 6px;">EXPLORATION</span>
+                    </div>
+                    <h3 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">SUPERPOSITION & REASONING</h3>
+                    <p class="text-px-gray text-base leading-relaxed mb-3">
+                        How superposition in MLP layers affects the model's ability to maintain faithful intermediate reasoning states.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-3">
+                        <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">SAE</span>
+                        <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Feature Extraction</span>
+                    </div>
+                    <span class="font-pixel text-[8px] text-px-dim tracking-wider">⚗ EXPERIMENTAL</span>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="reveal pixel-card p-5" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-pixel text-xl text-px-purple">⚙</span>
+                        <span class="pixel-tag-pink pixel-tag" style="font-size: 6px;">TOOLING</span>
+                    </div>
+                    <h3 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">PATCHLIB</h3>
+                    <p class="text-px-gray text-base leading-relaxed mb-3">
+                        Lightweight library for structured activation patching experiments with clean abstractions for causal tracing.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-3">
+                        <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Python</span>
+                        <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">PyTorch</span>
+                        <span class="text-[11px] text-px-dim border border-px-dim/20 px-2 py-0.5 font-terminal">Open Source</span>
+                    </div>
+                    <span class="font-pixel text-[8px] text-px-dim tracking-wider">🔒 IN DEVELOPMENT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ QUEST LOG (Timeline) ═══════════ -->
+    <section id="quest-log" class="relative py-20 lg:py-28 border-t-2 border-px-dim/20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="reveal text-center mb-14">
+                <span class="font-pixel text-[8px] text-px-dim tracking-[0.3em]">── SECTION 04 ──</span>
+                <h2 class="font-pixel text-lg md:text-xl text-px-green mt-3 tracking-wider">QUEST LOG</h2>
+                <hr class="pixel-divider max-w-xs mx-auto mt-4">
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-0">
+                <!-- Quest 1 - Active -->
+                <div class="reveal relative pl-12 pb-8">
+                    <div class="absolute left-0 top-1 w-6 h-6 border-2 border-px-green bg-px-green/20 flex items-center justify-center">
+                        <span class="w-2 h-2 bg-px-green"></span>
+                    </div>
+                    <div class="absolute left-[11px] top-8 bottom-0 w-[2px]" style="background: repeating-linear-gradient(to bottom, #00FF41 0px, #00FF41 4px, transparent 4px, transparent 8px); opacity: 0.3;"></div>
+                    <div class="font-pixel text-[7px] text-px-green mb-1 tracking-wider">2024 — PRESENT</div>
+                    <div class="pixel-tag mb-2" style="font-size: 6px;">◆ ACTIVE QUEST</div>
+                    <h4 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">COT FAITHFULNESS RESEARCH</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Leading investigation into mechanistic basis of chain-of-thought faithfulness using activation patching and circuit analysis on decoder-only transformers.
+                    </p>
+                </div>
+
+                <!-- Quest 2 - Complete -->
+                <div class="reveal relative pl-12 pb-8" style="transition-delay: 0.1s;">
+                    <div class="absolute left-0 top-1 w-6 h-6 border-2 border-px-dim bg-transparent flex items-center justify-center">
+                        <span class="text-px-gold text-xs">✓</span>
+                    </div>
+                    <div class="absolute left-[11px] top-8 bottom-0 w-[2px]" style="background: repeating-linear-gradient(to bottom, #444 0px, #444 4px, transparent 4px, transparent 8px); opacity: 0.3;"></div>
+                    <div class="font-pixel text-[7px] text-px-dim mb-1 tracking-wider">2023 — 2024</div>
+                    <div class="pixel-tag-gold pixel-tag mb-2" style="font-size: 6px;">✓ COMPLETED</div>
+                    <h4 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">DEEP DIVE: MECH INTERP</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Studied transformer circuits, superposition, and SAEs. Replicated key results from Anthropic and Redwood Research.
+                    </p>
+                </div>
+
+                <!-- Quest 3 - Complete -->
+                <div class="reveal relative pl-12 pb-8" style="transition-delay: 0.2s;">
+                    <div class="absolute left-0 top-1 w-6 h-6 border-2 border-px-dim bg-transparent flex items-center justify-center">
+                        <span class="text-px-gold text-xs">✓</span>
+                    </div>
+                    <div class="absolute left-[11px] top-8 bottom-0 w-[2px]" style="background: repeating-linear-gradient(to bottom, #444 0px, #444 4px, transparent 4px, transparent 8px); opacity: 0.3;"></div>
+                    <div class="font-pixel text-[7px] text-px-dim mb-1 tracking-wider">2023</div>
+                    <div class="pixel-tag-gold pixel-tag mb-2" style="font-size: 6px;">✓ COMPLETED</div>
+                    <h4 class="font-pixel text-[10px] text-px-white tracking-wider mb-2">AI SAFETY FOUNDATIONS</h4>
+                    <p class="text-px-gray text-base leading-relaxed">
+                        Built foundational understanding of alignment, RLHF, constitutional AI, and theoretical safety frameworks.
+                    </p>
+                </div>
+
+                <!-- Quest 4 -->
+                <div class="reveal relative pl-12" style="transition-delay: 0.3s;">
+                    <div class="absolute left-0 top-1 w-6 h-6 border-2 border-px-dim/50 bg-transparent flex items-center justify-center">
+                    </div>
+                    <div class="font-pixel text-[7px] text-px-dim/50 mb-1 tracking-wider">EARLIER</div>
+                    <div class="pixel-tag" style="font-size: 6px; border-color: rgba(68,68,68,0.3); color: #444;">◇ BACKSTORY</div>
+                    <h4 class="font-pixel text-[10px] text-px-white/60 tracking-wider mb-2 mt-2">ML & SOFTWARE ENGINEERING</h4>
+                    <p class="text-px-gray/60 text-base leading-relaxed">
+                        Developed strong foundations in ML, deep learning, and software engineering.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section id="contact" class="relative py-20 lg:py-28 border-t-2 border-px-dim/20">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-px-green/3 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+            <div class="reveal max-w-2xl mx-auto text-center">
+                <span class="font-pixel text-[8px] text-px-dim tracking-[0.3em]">── SECTION 05 ──</span>
+                <h2 class="font-pixel text-lg md:text-xl text-px-green mt-3 tracking-wider mb-3">CONTACT</h2>
+                <hr class="pixel-divider max-w-xs mx-auto mb-6">
+                <p class="text-px-gray text-lg mb-10">
+                    Interested in collaborating? Send a message.
+                </p>
+
+                <!-- Terminal-style form -->
+                <div class="pixel-card text-left overflow-hidden">
+                    <div class="bg-px-green/10 border-b-2 border-px-green/30 px-4 py-2 flex items-center gap-2">
+                        <span class="w-3 h-3 bg-px-red/60"></span>
+                        <span class="w-3 h-3 bg-px-gold/60"></span>
+                        <span class="w-3 h-3 bg-px-green/60"></span>
+                        <span class="font-pixel text-[7px] text-px-dim ml-2">MESSAGE_TERMINAL.exe</span>
+                    </div>
+                    <form id="contact-form" class="p-5 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="font-pixel text-[7px] text-px-dim tracking-wider block mb-1.5">> NAME_</label>
+                                <input type="text" required placeholder="your_name" class="pixel-input">
+                            </div>
+                            <div>
+                                <label class="font-pixel text-[7px] text-px-dim tracking-wider block mb-1.5">> EMAIL_</label>
+                                <input type="email" required placeholder="you@email.com" class="pixel-input">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="font-pixel text-[7px] text-px-dim tracking-wider block mb-1.5">> SUBJECT_</label>
+                            <input type="text" placeholder="research_collab..." class="pixel-input">
+                        </div>
+                        <div>
+                            <label class="font-pixel text-[7px] text-px-dim tracking-wider block mb-1.5">> MESSAGE_</label>
+                            <textarea rows="5" required placeholder="Tell me about your idea..." class="pixel-input resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="pixel-btn w-full justify-center">
+                            ▸ SEND MESSAGE
+                        </button>
+                        <div class="font-terminal text-[11px] text-px-dim/50 text-center">
+                            // messages sent to victorashioya960@gmail.com
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center justify-center gap-3 mt-8">
+                    <a href="https://github.com/ashioyajotham" target="_blank"
+                       class="w-12 h-12 border-2 border-px-dim flex items-center justify-center text-px-dim hover:border-px-green hover:text-px-green transition-colors" title="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://x.com/ashioyajotham_" target="_blank"
+                       class="w-12 h-12 border-2 border-px-dim flex items-center justify-center text-px-dim hover:border-px-blue hover:text-px-blue transition-colors" title="X / Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="mailto:victorashioya960@gmail.com"
+                       class="w-12 h-12 border-2 border-px-dim flex items-center justify-center text-px-dim hover:border-px-pink hover:text-px-pink transition-colors" title="Email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="2" y="4" width="20" height="16" rx="0"/><path d="M22 4L12 13 2 4"/></svg>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=J3rI_FIAAAAJ&hl=en" target="_blank"
+                       class="w-12 h-12 border-2 border-px-dim flex items-center justify-center text-px-dim hover:border-px-gold hover:text-px-gold transition-colors" title="Google Scholar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 1l12 8.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="border-t-2 border-px-dim/20 py-8">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="font-pixel text-[9px] text-px-green">▶</span>
+                    <span class="font-pixel text-[9px] text-px-white tracking-wider">ASHIOYA</span>
+                    <span class="text-px-dim text-sm">│</span>
+                    <span class="font-terminal text-px-dim text-sm">AI Safety Research</span>
+                </div>
+                <div class="flex items-center gap-5 font-terminal text-sm">
+                    <a href="#about" class="text-px-dim hover:text-px-green transition-colors">ABOUT</a>
+                    <a href="#research" class="text-px-dim hover:text-px-green transition-colors">RESEARCH</a>
+                    <a href="#projects" class="text-px-dim hover:text-px-green transition-colors">PROJECTS</a>
+                    <a href="#contact" class="text-px-dim hover:text-px-green transition-colors">CONTACT</a>
+                </div>
+                <div class="font-pixel text-[7px] text-px-dim/50 tracking-wider">
+                    © 2024
+                </div>
+            </div>
+            <!-- ASCII Art Footer -->
+            <div class="mt-6 text-center font-terminal text-xs text-px-dim/30 leading-tight select-none">
+<pre>╔══════════════════════════════════════════════════════════╗
+║  "The best way to predict the future is to interpret it" ║
+╚══════════════════════════════════════════════════════════╝</pre>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Typing Animation =====
+        const phrases = [
+            'mechanistic_interpretability.research()',
+            'cot_faithfulness.analyze(model)',
+            'circuits.discover(reasoning=True)',
+            'alignment.think_deeply()',
+            'safety.verify(model.intentions)',
+        ];
+        let phraseIdx = 0, charIdx = 0, isDeleting = false;
+        const typedEl = document.getElementById('typed-text');
+
+        function typeLoop() {
+            const current = phrases[phraseIdx];
+            if (!isDeleting) {
+                typedEl.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+                if (charIdx === current.length) {
+                    isDeleting = true;
+                    setTimeout(typeLoop, 2000);
+                    return;
+                }
+                setTimeout(typeLoop, 60 + Math.random() * 30);
+            } else {
+                typedEl.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+                if (charIdx === 0) {
+                    isDeleting = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                    setTimeout(typeLoop, 400);
+                    return;
+                }
+                setTimeout(typeLoop, 30);
+            }
+        }
+        setTimeout(typeLoop, 1200);
+
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== Character Sheet Bars (kept in About card) =====
+        const charSheetBars = document.querySelectorAll('.char-sheet-bar');
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    bar.style.width = bar.dataset.width;
+                }
+            });
+        }, { threshold: 0.2 });
+        charSheetBars.forEach(bar => barObserver.observe(bar));
+
+        // ===== Mobile Menu =====
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // ===== Toast =====
+        function showToast(msg, duration = 3000) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), duration);
+        }
+
+        // ===== Copy to Clipboard =====
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✓ COPIED: ' + text);
+            }).catch(() => {
+                showToast('✗ COPY FAILED');
+            });
+        }
+
+        // ===== Contact Form =====
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('✓ MESSAGE SENT! (DEMO)');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
