@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { ScrollReveal } from "./scroll-reveal";
 import { SOCIAL_LINKS } from "./data";
 import { useToast } from "@/hooks/use-toast";
+import { CONTACT_CONFIG } from "@/lib/contact-config";
 
 export function Contact() {
   const [name, setName] = useState("");
@@ -16,18 +17,46 @@ export function Contact() {
     e.preventDefault();
     setSending(true);
 
-    // Simulate sending
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      const res = await fetch(CONTACT_CONFIG.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: CONTACT_CONFIG.accessKey,
+          name,
+          email,
+          message,
+          from_name: "Portfolio Contact",
+          subject: `New message from ${name}`,
+        }),
+      });
 
-    toast({
-      title: "Message sent!",
-      description: `Thanks ${name}, I'll get back to you soon.`,
-    });
+      const data = await res.json();
 
-    setName("");
-    setEmail("");
-    setMessage("");
-    setSending(false);
+      if (data.success) {
+        toast({
+          title: "Message sent!",
+          description: `Thanks ${name}, I'll get back to you soon.`,
+        });
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        toast({
+          title: "Sending failed",
+          description: data.message || "Something went wrong. Try emailing directly.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Network error",
+        description: "Could not reach the server. Try again or email directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
