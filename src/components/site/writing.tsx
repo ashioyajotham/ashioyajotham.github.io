@@ -30,13 +30,20 @@ export function Writing() {
                 <h4 className="font-pixel text-xs text-px-gold mb-2">
                   [{String(i + 1).padStart(2, "0")}] {pub.title}
                 </h4>
-                <p className="font-terminal text-base text-px-gray mb-1">
-                  {pub.authors}
-                </p>
                 <p className="font-terminal text-base text-px-dim mb-3">
                   {pub.venue} &middot; {pub.year}
                 </p>
                 <div className="flex gap-3">
+                  {pub.link && (
+                    <a
+                      href={pub.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pixel-btn-sm"
+                    >
+                      Paper &rarr;
+                    </a>
+                  )}
                   {pub.arxiv && (
                     <a
                       href={pub.arxiv}
@@ -44,18 +51,7 @@ export function Writing() {
                       rel="noopener noreferrer"
                       className="pixel-btn-sm"
                     >
-                      arXiv ↗
-                    </a>
-                  )}
-                  {pub.link && (
-                    <a
-                      href={pub.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pixel-btn-ghost"
-                      style={{ padding: "8px 14px", fontSize: "8px" }}
-                    >
-                      Paper
+                      arXiv &rarr;
                     </a>
                   )}
                 </div>
@@ -92,7 +88,7 @@ export function Writing() {
                       rel="noopener noreferrer"
                       className="pixel-btn-sm"
                     >
-                      Read ↗
+                      Read &rarr;
                     </a>
                   )}
                 </div>

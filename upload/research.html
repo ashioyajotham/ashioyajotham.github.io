@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Ashioya Jotham Victor</title>
+    <link rel="icon" type="image/x-icon" href="elephant.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.75;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        nav {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-bottom: 3rem;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-main h1 {
+            font-size: 2.25rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-main p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .hero-main a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+            text-underline-offset: 3px;
+        }
+
+        .hero-main a:hover {
+            text-decoration-color: #1a1a1a;
+        }
+
+        /* Beliefs panel */
+        .beliefs-panel {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 1.5rem;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            height: fit-content;
+        }
+
+        .beliefs-panel h2 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .beliefs-panel ul {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .beliefs-panel li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            border-left: 2px solid #444;
+        }
+
+        .beliefs-panel a {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .beliefs-panel a:hover {
+            color: #fff;
+        }
+
+        /* Main content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        @media (max-width: 800px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        h2.section-title {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* The Arc - narrative timeline */
+        .arc-narrative {
+            font-size: 1.05rem;
+        }
+
+        .arc-narrative p {
+            margin-bottom: 1.25rem;
+        }
+
+        .arc-year {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #888;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .arc-narrative a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+        }
+
+        /* Quote banner */
+        .quote-banner {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 2.5rem 3rem;
+            margin-bottom: 3rem;
+            font-family: Georgia, serif;
+        }
+
+        .quote-banner blockquote {
+            font-size: 1.35rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 0;
+            color: #e0e0e0;
+        }
+
+        .quote-banner .quote-source {
+            margin-top: 1.25rem;
+            font-size: 0.9rem;
+            font-style: normal;
+            color: #888;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .quote-banner .quote-source a {
+            color: #888;
+            text-decoration: underline;
+            text-decoration-color: #555;
+        }
+
+        .quote-banner .quote-source a:hover {
+            color: #fff;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-title {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .project-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .project-title a:hover {
+            color: #0066cc;
+        }
+
+        .project-status {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+        }
+
+        .status-active {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-writing {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .project-featured {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem;
+            color: #b8860b;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-featured a {
+            color: #b8860b;
+            text-decoration: underline;
+            text-decoration-color: rgba(184, 134, 11, 0.4);
+        }
+
+        .project-featured a:hover {
+            color: #8b6914;
+            text-decoration-color: #8b6914;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-question {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .project-question strong {
+            color: #666;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .sidebar-section h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        /* Publications in sidebar */
+        .pub-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .pub-year {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .pub-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+        }
+
+        .pub-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            color: #0066cc;
+        }
+
+        .pub-venue {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Research diary callout */
+        .diary-box {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 1.25rem;
+        }
+
+        .diary-box h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .diary-box p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+
+        .diary-box a {
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .diary-box a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.85rem;
+            color: #888;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #666;
+            padding: 0.25rem;
+            vertical-align: middle;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .container {
+            background: #1a1a2e;
+        }
+
+        body.dark-mode nav a {
+            color: #aaa;
+        }
+
+        body.dark-mode nav a:hover {
+            color: #fff;
+        }
+
+        body.dark-mode .theme-toggle {
+            color: #aaa;
+        }
+
+        body.dark-mode .hero-main h1 {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .hero-main p {
+            color: #bbb;
+        }
+
+        body.dark-mode .hero-main a {
+            color: #6db3f2;
+            text-decoration-color: #555;
+        }
+
+        body.dark-mode .beliefs-panel {
+            background: #0d0d1a;
+        }
+
+        body.dark-mode .section-title {
+            color: #888;
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .arc-narrative {
+            color: #ccc;
+        }
+
+        body.dark-mode .arc-narrative a {
+            color: #6db3f2;
+        }
+
+        body.dark-mode .quote-banner {
+            background: #0d0d1a;
+        }
+
+        body.dark-mode .quote-banner blockquote {
+            color: #ccc;
+        }
+
+        body.dark-mode .project-title a {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .project-title a:hover {
+            color: #6db3f2;
+        }
+
+        body.dark-mode .project-desc {
+            color: #aaa;
+        }
+
+        body.dark-mode .project-item {
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode .project-featured {
+            color: #daa520;
+        }
+
+        body.dark-mode .project-featured a {
+            color: #daa520;
+            text-decoration-color: rgba(218, 165, 32, 0.4);
+        }
+
+        body.dark-mode .project-featured a:hover {
+            color: #ffd700;
+            text-decoration-color: #ffd700;
+        }
+
+        body.dark-mode .pub-title a {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .pub-title a:hover {
+            color: #6db3f2;
+        }
+
+        body.dark-mode .pub-venue {
+            color: #888;
+        }
+
+        body.dark-mode .diary-box {
+            background: #252540;
+            border-color: #444;
+        }
+
+        body.dark-mode .diary-box p {
+            color: #aaa;
+        }
+
+        body.dark-mode .diary-box a {
+            color: #6db3f2;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="research.html">Research</a>
+            <a href="projects.html">Projects</a>
+            <a href="essays.html">Essays</a>
+            <a href="now.html">Now</a>
+            <button class="theme-toggle" onclick="toggleDarkMode()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-main">
+                <h1>I don't think scaling gets us to robust reasoning.</h1>
+                <p>Language models exhibit what Ethan Mollick calls <a
+                        href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321">"jagged intelligence"</a>:
+                    superhuman at some tasks, brittle at others humans find trivial. This jagged profile is why
+                    interpretability matters—we need to understand <em>where</em> and <em>why</em> systems break.</p>
+                <p>My work traces how specific neurons, attention heads, and pathways give rise to model capabilities
+                    and failures. I'm particularly drawn to <strong>hallucinations</strong>: when models produce
+                    confident-but-wrong outputs.</p>
+            </div>
+            <div class="beliefs-panel">
+                <h2>Where I Stand</h2>
+                <ul>
+                    <li>World models > scaling language models</li>
+                    <li>Alignment is stewardship, not prophecy</li>
+                    <li>Pessimism ≠ intelligence</li>
+                    <li>To see a failure mode is to inherit responsibility for it</li>
+                </ul>
+                <a href="https://open.substack.com/pub/ashioyajotham/p/my-research-ethos-for-alignment-and">Full ethos
+                    →</a>
+            </div>
+        </div>
+
+        <div class="quote-banner">
+            <blockquote>
+                "We offer no explanation as to why these architectures seem to work; we attribute their success, as all
+                else, to divine benevolence."
+            </blockquote>
+            <div class="quote-source">
+                — Noam Shazeer, <a href="https://arxiv.org/abs/2002.05202">GLU Variants Improve Transformer</a> (2020)
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">How I Got Here</h2>
+                    <div class="arc-narrative">
+                        <p><span class="arc-year">2023</span> I started with the intuition that self-supervised
+                            approaches were undersold. The field was drunk on supervised fine-tuning; I wrote <a
+                                href="https://openreview.net/forum?id=Hk7QOUpP82">"The Future Remains Unsupervised"</a>
+                            for Deep Learning Indaba as a counterweight.</p>
+
+                        <p><span class="arc-year">2024</span> Then I got interested in failure modes. Why do models
+                            produce confident nonsense? The term "hallucination" felt too forgiving—I started calling it
+                            <em>confabulation</em>, borrowing from neuroscience. Began building <a
+                                href="https://github.com/ashioyajotham/Value-Aligned-Confabulation-VAC-Research">metrics
+                                for measuring it</a>.
+                        </p>
+
+                        <p><span class="arc-year">2025</span> Now I'm going deeper: mechanistic interpretability. Can we
+                            detect when a model "knows" it's being evaluated? Can we find the exact pathways where
+                            reasoning goes wrong? The work is harder but more satisfying. I'm at <a
+                                href="https://www.bluedot.org/">Bluedot</a> this year, focused on this full-time.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Active Projects</h2>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-title"><a
+                                    href="https://github.com/ashioyajotham/cot-faithfulness-mech-interp">Chain-of-Thought
+                                    Faithfulness</a></span>
+                            <span class="project-status status-active">Active</span>
+                        </div>
+                        <p class="project-featured">🏆 <a
+                                href="https://blog.bluedot.org/p/mechanistic-analysis-of-chain-of">Top 5 at Bluedot Demo
+                                Day</a></p>
+                        <p class="project-desc">Mechanistic analysis of reasoning faithfulness in GPT-2 Small. Linear
+                            probe achieves 88% accuracy (ROC-AUC 0.949) detecting unfaithful CoT from residual streams.
+                            Identified 23 causal circuit components; steering vectors achieve ~72% success shifting
+                            unfaithful → faithful.</p>
+                        <p class="project-question"><strong>Open:</strong> Do these circuits generalize across model
+                            scales and reasoning tasks?</p>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-title"><a
+                                    href="https://github.com/ashioyajotham/eval-awareness-research">Evaluation Awareness
+                                    Detection</a></span>
+                            <span class="project-status status-active">Active</span>
+                        </div>
+                        <p class="project-desc">Do LLMs internally represent being monitored? Found 92.3% probe accuracy
+                            at layer 16 with 70.3% transfer to subtle cues.</p>
+                        <p class="project-question"><strong>Open:</strong> Does awareness direction causally affect
+                            policy decisions?</p>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-title"><a
+                                    href="https://github.com/ashioyajotham/weather_forecasting_lora">Weather Forecasting
+                                    with LoRA</a></span>
+                            <span class="project-status status-writing">Writing up</span>
+                        </div>
+                        <p class="project-desc">Testing "LoRA Without Regret" methodology on numerical → natural
+                            language forecasts.</p>
+                        <p class="project-question"><strong>Open:</strong> Can RLHF optimize for both accuracy and
+                            style?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Selected Publications</h3>
+
+                    <div class="pub-item">
+                        <div class="pub-year">2025</div>
+                        <div class="pub-title"><a href="https://openreview.net/forum?id=yyNP1L26c6">Democratizing
+                                Quantitative Trading in African Markets</a></div>
+                        <div class="pub-venue">AIBF 2025</div>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-year">2024</div>
+                        <div class="pub-title"><a
+                                href="https://conferences.kabarak.ac.ke/index.php/dsai/issue/view/15">Enhancing HIV
+                                Testing Indicator Reporting</a></div>
+                        <div class="pub-venue">DSAI Journal</div>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-year">2023</div>
+                        <div class="pub-title"><a href="https://openreview.net/forum?id=Hk7QOUpP82">The Future Remains
+                                Unsupervised</a></div>
+                        <div class="pub-venue">Deep Learning Indaba</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="diary-box">
+                        <h3>Research Diary</h3>
+                        <p>Working notes, paper annotations, technical history from n-grams to Transformers.</p>
+                        <a href="https://github.com/ashioyajotham/ai_research">Browse the repo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; Ashioya Jotham Victor
+        </footer>
+    </div>
+</body>
+
+</html>

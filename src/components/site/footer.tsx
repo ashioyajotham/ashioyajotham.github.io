@@ -64,8 +64,20 @@ export function Footer() {
 
             {/* Right */}
             <div className="text-center sm:text-right">
-              <p className="font-terminal text-xs text-px-gray italic">
-                &ldquo;The best way to predict the future is to interpret it.&rdquo;
+              <p className="font-terminal text-xs text-px-gold italic">
+                &ldquo;We attribute their success to divine benevolence.&rdquo;
+              </p>
+              <p className="font-terminal text-xs text-px-dim mt-1">
+                &mdash;{" "}
+                <a
+                  href="https://arxiv.org/abs/2002.05202"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="now-link"
+                  style={{ color: "var(--px-gold)" }}
+                >
+                  Noam Shazeer
+                </a>
               </p>
               <p className="font-terminal text-xs text-px-dim mt-1">
                 <span className="pixel-float inline-block">🐘</span> ashioyajotham

@@ -64,3 +64,24 @@ Stage Summary:
 - Browser-verified: all sections render correctly, links work, no errors
 - Footer quote confirmed: "The best way to predict the future is to interpret it." (no "beautifully")
 
+---
+Task ID: 2
+Agent: main
+Task: Update publications, essays, research section, and footer with real content from uploaded files
+
+Work Log:
+- Read uploaded essays.html and research.html for real content
+- Attempted ResearchGate scrape (JS-heavy, no useful content) — used research.html publications instead
+- Updated data.ts: replaced 3 placeholder publications with real ones (AIBF 2025, DSAI Journal 2024, Deep Learning Indaba 2023)
+- Updated data.ts: replaced 1 placeholder essay with 2 real essays (AI Priesthood vs AI Pluralism, Research Ethos)
+- Added RESEARCH_BELIEFS, RESEARCH_ARC, NOAM_QUOTE data constants to data.ts
+- Completely redesigned research.tsx: hero intro + "Where I Stand" beliefs panel, Noam Shazeer quote banner (gold border, prominent), "How I Got Here" arc timeline (2023-2025), research interests grid, research diary box
+- Updated writing.tsx: real publications with "Paper →" buttons, real essays with "Read →" buttons and Substack links
+- Updated footer.tsx: replaced old quote with Noam Shazeer "divine benevolence" quote, linked to arxiv paper in gold
+- Lint passes clean, browser verified all three sections render correctly with no console errors
+
+Stage Summary:
+- Publications now show real papers from research.html
+- Essays now show 2 real Substack essays from essays.html
+- Research section completely redesigned with rich content from research.html (hero, beliefs, quote, timeline, diary)
+- Noam Shazeer quote highlighted prominently in gold banner in research section AND in footer (linked to GLU paper)

@@ -140,27 +140,25 @@ export interface Publication {
 
 export const PUBLICATIONS: Publication[] = [
   {
-    title: "Evaluating Faithfulness in Chain-of-Thought Reasoning",
-    venue: "NeurIPS Workshop on Alignment",
-    year: 2024,
-    authors: "Ashioya Jotham Victor, Collaborators",
-    arxiv: "https://arxiv.org/abs/2401.xxxxx",
+    title: "Democratizing Quantitative Trading in African Markets",
+    venue: "AIBF 2025",
+    year: 2025,
+    authors: "Victor Ashioya",
+    link: "https://openreview.net/forum?id=yyNP1L26c6",
   },
   {
-    title:
-      "Towards Mechanistic Interpretability of Safety Behaviors in Large Language Models",
-    venue: "ICML Workshop on Mechanistic Interpretability",
+    title: "Enhancing HIV Testing Indicator Reporting",
+    venue: "DSAI Journal",
     year: 2024,
-    authors: "Ashioya Jotham Victor, Collaborators",
-    arxiv: "https://arxiv.org/abs/2406.xxxxx",
+    authors: "Victor Ashioya",
+    link: "https://conferences.kabarak.ac.ke/index.php/dsai/issue/view/15",
   },
   {
-    title:
-      "A Benchmark for Measuring Reasoning Consistency in Large Language Models",
-    venue: "ACL Workshop on Trustworthy NLP",
+    title: "The Future Remains Unsupervised",
+    venue: "Deep Learning Indaba",
     year: 2023,
-    authors: "Ashioya Jotham Victor, Collaborators",
-    arxiv: "https://arxiv.org/abs/2309.xxxxx",
+    authors: "Victor Ashioya",
+    link: "https://openreview.net/forum?id=Hk7QOUpP82",
   },
 ];
 
@@ -173,13 +171,52 @@ export interface Essay {
 
 export const ESSAYS: Essay[] = [
   {
-    title: "Why AI Safety Needs More Mechanistic Understanding",
+    title: "AI Priesthood vs AI Pluralism",
     description:
-      "A deep dive into why surface-level safety evaluations are insufficient and why we need to understand the internal computations of AI systems to ensure they remain safe as they scale.",
-    date: "2024-06",
-    link: "#",
+      "On builders, clerics, and the future of intelligence. Every major technological revolution produces two kinds of institutions — and AI is no different.",
+    date: "2026-02-04",
+    link: "https://ashioyajotham.substack.com",
+  },
+  {
+    title: "My Research Ethos for Alignment & Interpretability",
+    description:
+      "Builder, anti-doomer, anti-gnostic. I approach AI alignment and interpretability as fields of repair, not apocalyptic forecasting.",
+    date: "2026-01-12",
+    link: "https://open.substack.com/pub/ashioyajotham/p/my-research-ethos-for-alignment-and",
   },
 ];
+
+/* ═══════════ RESEARCH PAGE DATA ═══════════ */
+
+export const RESEARCH_BELIEFS = [
+  `World models > scaling language models`,
+  `Alignment is stewardship, not prophecy`,
+  `Pessimism ≠ intelligence`,
+  `To see a failure mode is to inherit responsibility for it`,
+];
+
+export const RESEARCH_ARC = [
+  {
+    year: "2023",
+    html: `I started with the intuition that self-supervised approaches were undersold. The field was drunk on supervised fine-tuning; I wrote <a href="https://openreview.net/forum?id=Hk7QOUpP82" target="_blank" rel="noopener noreferrer" class="now-link">\"The Future Remains Unsupervised\"</a> for Deep Learning Indaba as a counterweight.`,
+  },
+  {
+    year: "2024",
+    html: `Then I got interested in failure modes. Why do models produce confident nonsense? The term \"hallucination\" felt too forgiving—I started calling it <em>confabulation</em>, borrowing from neuroscience. Began building <a href="https://github.com/ashioyajotham/Value-Aligned-Confabulation-VAC-Research" target="_blank" rel="noopener noreferrer" class="now-link">metrics for measuring it</a>.`,
+  },
+  {
+    year: "2025",
+    html: `Now I&apos;m going deeper: mechanistic interpretability. Can we detect when a model \"knows\" it&apos;s being evaluated? Can we find the exact pathways where reasoning goes wrong? The work is harder but more satisfying.`,
+  },
+];
+
+export const NOAM_QUOTE = {
+  text: `\"We offer no explanation as to why these architectures seem to work; we attribute their success, as all else, to divine benevolence.\"`,
+  source: "Noam Shazeer",
+  paper: "GLU Variants Improve Transformer",
+  link: "https://arxiv.org/abs/2002.05202",
+  year: 2020,
+};
 
 export interface NowEntry {
   html: string;
