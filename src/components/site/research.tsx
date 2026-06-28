@@ -86,13 +86,7 @@ export function Research() {
               <span>(2020)</span>
             </div>
 
-            <p
-              className="font-terminal text-xs mt-4 relative z-10 italic"
-              style={{ color: "var(--px-green)", opacity: 0.7 }}
-            >
-              &gt; This is the starting point for everything I do.
-            </p>
-          </div>
+            </div>
         </ScrollReveal>
 
         {/* Hero: intro + beliefs panel */}
