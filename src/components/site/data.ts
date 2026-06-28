@@ -179,55 +179,64 @@ export const ESSAYS: Essay[] = [
   },
 ];
 
-export interface QuestEntry {
-  date: string;
-  text: string;
-  status: "active" | "complete" | "ongoing";
-  icon: string;
+export interface NowEntry {
+  html: string;
 }
 
-export const QUEST_LOG: QuestEntry[] = [
+export interface NowSection {
+  title: string;
+  icon: string;
+  items: NowEntry[];
+}
+
+export const NOW_SECTIONS: NowSection[] = [
   {
-    date: "2025-01",
-    text: "Researching circuit-level interpretability for safety-relevant features at ILINA",
-    status: "active",
-    icon: "🔬",
+    title: "Working on",
+    icon: "⚡",
+    items: [
+      {
+        html: `Researcher in <a href="https://www.amnestykenya.org/" target="_blank" rel="noopener noreferrer" class="now-link">Amnesty International Kenya</a>&apos;s <a href="https://www.amnestykenya.org/rightup-2-0/" target="_blank" rel="noopener noreferrer" class="now-link">RightUp 2.0</a> program — a youth-led research initiative investigating tech-facilitated repression and how surveillance tools and digital tactics are used to silence activists and civil society.`,
+      },
+      {
+        html: 'Junior Research Fellow at the <a href="https://www.ilinaprogram.org/" target="_blank" rel="noopener noreferrer" class="now-link">ILINA Program</a>, focusing on technical AI safety and mechanistic interpretability. Building "runtime safety governors" using activation steering to detect and correct deceptive model behavior in real-time, specifically testing if these internal safety controls generalize to Swahili.',
+      },
+      {
+        html: 'Leading partnerships at <a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" class="now-link">GDG Pwani</a> — currently prepping for <a href="https://gdg.community.dev/gdg-pwani/" target="_blank" rel="noopener noreferrer" class="now-link">Google I/O Extended Pwani 2026</a>, reaching out to partners and sponsors.',
+      },
+    ],
   },
   {
-    date: "2024-12",
-    text: "Writing paper on systematic evaluation of CoT faithfulness",
-    status: "ongoing",
-    icon: "📝",
+    title: "Thinking about",
+    icon: "💭",
+    items: [
+      {
+        html: 'The politics of AI governance. Who gets to decide what "safe" means, and whether the current landscape is trending toward pluralism or priesthood.',
+      },
+      {
+        html: 'The gap between alignment research and deployment reality. The field has a theory-practice problem that nobody wants to name directly.',
+      },
+    ],
   },
   {
-    date: "2024-11",
-    text: "Organizing GDG Pwani meetup on responsible AI development",
-    status: "complete",
-    icon: "🎤",
+    title: "Reading",
+    icon: "📖",
+    items: [
+      {
+        html: `<em>The Infinity Machine</em> by Sebastian Mallaby — the biography of <a href="https://en.wikipedia.org/wiki/Demis_Hassabis" target="_blank" rel="noopener noreferrer" class="now-link">Demis Hassabis</a> and the story of <a href="https://deepmind.google/" target="_blank" rel="noopener noreferrer" class="now-link">DeepMind</a>&apos;s quest toward superintelligence.`,
+      },
+      {
+        html: `Re-reading <em>Seeing Like a State</em> (Scott) — keeps being relevant. Working through the Anthropic interpretability papers to trace how the field&apos;s assumptions evolved.`,
+      },
+    ],
   },
   {
-    date: "2024-10",
-    text: "Contributing to open-source interpretability tooling",
-    status: "ongoing",
+    title: "Building",
     icon: "🔧",
-  },
-  {
-    date: "2024-09",
-    text: "Mentoring junior ML researchers through GDG Pwani",
-    status: "complete",
-    icon: "🎓",
-  },
-  {
-    date: "2024-08",
-    text: "Exploring sparse autoencoders for feature extraction in safety circuits",
-    status: "ongoing",
-    icon: "🧠",
-  },
-  {
-    date: "2024-07",
-    text: "Gave a talk on AI safety at Google Developer Expert community event",
-    status: "complete",
-    icon: "📢",
+    items: [
+      {
+        html: `A small tool for visualizing attention patterns in a way that&apos;s actually useful for debugging. Early stages. May never ship.`,
+      },
+    ],
   },
 ];
 

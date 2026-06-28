@@ -368,6 +368,21 @@ html:not(.dark) .pixel-grid {
 }
 .nav-link-pixel:hover::after { width: 100%; }
 
+/* ═══════════ NOW SECTION LINKS ═══════════ */
+.now-link {
+  color: var(--px-blue);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s steps(3), color 0.15s steps(3);
+}
+.now-link:hover {
+  border-bottom-color: var(--px-blue);
+  color: var(--px-blue);
+  filter: brightness(1.2);
+}
+.dark .now-link { color: var(--px-blue); }
+.dark .now-link:hover { color: var(--px-blue); filter: brightness(1.2); }
+
 /* ═══════════ PIXEL INPUT ═══════════ */
 .pixel-input {
   font-family: var(--font-terminal), 'VT323', monospace;

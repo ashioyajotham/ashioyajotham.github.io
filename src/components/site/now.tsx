@@ -1,19 +1,9 @@
 "use client";
 
 import { ScrollReveal } from "./scroll-reveal";
-import { QUEST_LOG } from "./data";
+import { NOW_SECTIONS } from "./data";
 
-const STATUS_STYLES: Record<string, string> = {
-  active: "text-px-green",
-  ongoing: "text-px-gold",
-  complete: "text-px-dim",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  active: "● ACTIVE",
-  ongoing: "◐ IN PROGRESS",
-  complete: "✓ COMPLETE",
-};
+const SECTION_COLORS = ["green", "blue", "gold", "pink"] as const;
 
 export function Now() {
   return (
@@ -21,63 +11,62 @@ export function Now() {
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
           <h2 className="font-pixel text-px-green text-xs sm:text-sm mb-3">
-            <span className="text-px-dim">$</span> cat quest_log.md
+            <span className="text-px-dim">$</span> cat now.md
           </h2>
           <p className="font-terminal text-lg text-px-gray mb-10">
             What I&apos;m working on now
           </p>
         </ScrollReveal>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div
-            className="absolute left-4 top-0 bottom-0 w-1"
-            style={{
-              background:
-                "repeating-linear-gradient(to bottom, var(--px-green) 0px, var(--px-green) 4px, transparent 4px, transparent 8px)",
-            }}
-          />
-
-          <div className="space-y-6">
-            {QUEST_LOG.map((entry, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <div className="flex gap-4 ml-1">
-                  {/* Timeline dot */}
-                  <div className="flex-shrink-0 w-7 h-7 flex items-center justify-center mt-1">
-                    <span className="font-terminal text-lg">
-                      {entry.icon}
+        <div className="space-y-8">
+          {NOW_SECTIONS.map((section, si) => {
+            const color = SECTION_COLORS[si % SECTION_COLORS.length];
+            return (
+              <ScrollReveal key={section.title} delay={si * 120}>
+                <div
+                  className="pixel-card p-5 sm:p-6"
+                  style={{
+                    boxShadow: `4px 4px 0 0 var(--px-${color})`,
+                    borderColor: `var(--px-${color})`,
+                  }}
+                >
+                  {/* Section header */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="font-terminal text-xl">
+                      {section.icon}
                     </span>
+                    <h3
+                      className={`font-pixel text-xs sm:text-sm text-px-${color}`}
+                    >
+                      {section.title.toUpperCase()}
+                    </h3>
+                    <div
+                      className="flex-1 h-px opacity-30"
+                      style={{
+                        background: `repeating-linear-gradient(to right, var(--px-${color}) 0px, var(--px-${color}) 4px, transparent 4px, transparent 8px)`,
+                      }}
+                    />
                   </div>
 
-                  {/* Content */}
-                  <div
-                    className="pixel-card p-4 sm:p-5 flex-1"
-                    style={{ boxShadow: "4px 4px 0 0 rgba(0,0,0,0.12)" }}
-                  >
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="font-terminal text-sm text-px-dim">
-                        {entry.date}
-                      </span>
-                      <span
-                        className={`font-pixel text-px ${STATUS_STYLES[entry.status]}`}
-                        style={{ fontSize: "7px" }}
-                      >
-                        {STATUS_LABELS[entry.status]}
-                      </span>
-                    </div>
-                    <p className="font-terminal text-base sm:text-lg text-px-white leading-relaxed">
-                      {entry.text}
-                    </p>
+                  {/* Items */}
+                  <div className="space-y-3">
+                    {section.items.map((item, ii) => (
+                      <p
+                        key={ii}
+                        className="font-terminal text-base sm:text-lg text-px-white leading-relaxed now-entry"
+                        dangerouslySetInnerHTML={{ __html: item.html }}
+                      />
+                    ))}
                   </div>
                 </div>
               </ScrollReveal>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        <ScrollReveal delay={600}>
+        <ScrollReveal delay={500}>
           <p className="font-terminal text-sm text-px-dim mt-8 text-center">
-            Last updated: January 2025
+            Last updated: May 2026
           </p>
         </ScrollReveal>
       </div>
