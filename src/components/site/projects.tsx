@@ -25,24 +25,48 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <ScrollReveal delay={index * 80}>
       <div className={`${cardClass} p-0 overflow-hidden flex flex-col h-full`}>
-        {/* Road thumbnail */}
-        <div className="relative w-full aspect-video bg-px-surface overflow-hidden">
-          <Image
-            src={`/projects/road-${project.thumbnail}.png`}
-            alt={`${project.title} thumbnail`}
-            fill
-            className="pixel-img object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-          {/* Overlay gradient */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent 40%, var(--px-bg) 100%)",
-            }}
-          />
-        </div>
+        {/* Thumbnail area */}
+        {project.thumbnail ? (
+          <div className="relative w-full aspect-video bg-px-surface overflow-hidden">
+            <Image
+              src={project.thumbnail}
+              alt={`${project.title} thumbnail`}
+              fill
+              className="pixel-img object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            {/* Overlay gradient */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 40%, var(--px-bg) 100%)",
+              }}
+            />
+            {/* Badge overlay */}
+            {project.badge && (
+              <span
+                className="absolute top-3 left-3 pixel-tag"
+                style={{ fontSize: "6px" }}
+              >
+                {project.badge}
+              </span>
+            )}
+          </div>
+        ) : (
+          /* No thumbnail — icon + badge header */
+          <div className="p-4 sm:p-5 flex items-center gap-3">
+            <span className="font-pixel text-xl text-px-purple">⚙</span>
+            {project.badge && (
+              <span
+                className={tagClass}
+                style={{ fontSize: "6px" }}
+              >
+                {project.badge}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Content */}
         <div className="p-4 sm:p-5 flex flex-col flex-1">

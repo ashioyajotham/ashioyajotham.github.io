@@ -20,7 +20,7 @@ export const SOCIAL_LINKS = {
 export const TITLES = [
   { label: "Google Developer Expert", abbr: "GDE", field: "AI", link: "https://g.dev/ashioyajotham" },
   { label: "GDG Pwani", abbr: "GDG", field: "Partnerships Lead", link: "https://gdg.community.dev/gdg-pwani" },
-  { label: "ILINA Program", abbr: "ILINA", field: "Jr Research Fellow", link: "https://www.ilinaprogram.org/team" },
+  { label: "ILINA Program", abbr: "ILINA", field: "Jr Research Fellow", link: "https://www.ilinaprogram.org/2026-jrfs" },
 ];
 
 export interface Project {
@@ -31,19 +31,59 @@ export interface Project {
   link?: string;
   github?: string;
   variant: "green" | "gold" | "blue" | "pink";
-  thumbnail: number; // 1-9, maps to road-N.png
+  thumbnail?: string; // path like /projects/file.jpg or /projects/road-N.png
+  badge?: string; // optional badge like "FEATURED", "IN PROGRESS", "COMING SOON"
 }
 
 export const PROJECTS: Project[] = [
+  {
+    id: "cot-faithfulness-mech-interp",
+    title: "CoT-Faithfulness-Mech-Interp",
+    description:
+      "Mechanistic interpretability analysis of chain-of-thought faithfulness. Includes activation patching, circuit analysis, and benchmarks for evaluating whether reasoning traces genuinely reflect model computations.",
+    tags: ["Python", "PyTorch", "TransformerLens"],
+    github: "https://github.com/ashioyajotham/cot-faithfulness-mech-interp",
+    variant: "green",
+    thumbnail: "/projects/cot-faithfulness.jpg",
+    badge: "★ FEATURED",
+  },
+  {
+    id: "reasoning-circuit-atlas",
+    title: "Reasoning Circuit Atlas",
+    description:
+      "Interactive atlas mapping reasoning circuits across model scales. Visualizes how faithfulness circuits develop during training.",
+    tags: ["Python", "Plotly", "Streamlit"],
+    variant: "blue",
+    thumbnail: "/projects/reasoning-atlas.jpg",
+    badge: "IN PROGRESS",
+  },
+  {
+    id: "superposition-reasoning",
+    title: "Superposition & Reasoning",
+    description:
+      "How superposition in MLP layers affects the model's ability to maintain faithful intermediate reasoning states.",
+    tags: ["SAE", "Feature Extraction"],
+    variant: "gold",
+    badge: "EXPLORATION",
+  },
+  {
+    id: "patchlib",
+    title: "PatchLib",
+    description:
+      "Lightweight library for structured activation patching experiments with clean abstractions for causal tracing.",
+    tags: ["Python", "PyTorch", "Open Source"],
+    variant: "green",
+    badge: "IN DEVELOPMENT",
+  },
   {
     id: "faithbench",
     title: "FaithBench",
     description:
       "A benchmark for evaluating the faithfulness of chain-of-thought reasoning in large language models. Measures whether reasoning traces genuinely reflect model computations.",
     tags: ["AI Safety", "Benchmark", "LLM"],
-    link: "https://github.com/ashioyajotham/faithbench",
+    github: "https://github.com/ashioyajotham/faithbench",
     variant: "green",
-    thumbnail: 1,
+    thumbnail: "/projects/road-1.png",
   },
   {
     id: "circuitlens",
@@ -53,7 +93,7 @@ export const PROJECTS: Project[] = [
     tags: ["Interpretability", "Visualization", "Open Source"],
     github: "https://github.com/ashioyajotham/circuitlens",
     variant: "blue",
-    thumbnail: 2,
+    thumbnail: "/projects/road-2.png",
   },
   {
     id: "safeprompt",
@@ -63,27 +103,7 @@ export const PROJECTS: Project[] = [
     tags: ["AI Safety", "Prompt Engineering", "Security"],
     github: "https://github.com/ashioyajotham/safeprompt",
     variant: "gold",
-    thumbnail: 3,
-  },
-  {
-    id: "bluedot-safety",
-    title: "Bluedot Safety Research",
-    description:
-      "Contributing to technical AI safety research at Bluedot. Working on scalable oversight, interpretability, and alignment research.",
-    tags: ["AI Safety", "Alignment", "Research"],
-    link: "https://bluedot.org",
-    variant: "pink",
-    thumbnail: 4,
-  },
-  {
-    id: "gdg-pwani",
-    title: "GDG Pwani",
-    description:
-      "Google Developer Group Pwani — building a vibrant developer community in Kenya's coastal region. Organizing workshops, hackathons, and tech talks on AI/ML.",
-    tags: ["Community", "Google", "Education"],
-    link: "https://gdg.community.dev/gdg-pwani/",
-    variant: "green",
-    thumbnail: 5,
+    thumbnail: "/projects/road-3.png",
   },
   {
     id: "tensorlens",
@@ -93,17 +113,7 @@ export const PROJECTS: Project[] = [
     tags: ["ML Tools", "Visualization", "PyTorch"],
     github: "https://github.com/ashioyajotham/tensorlens",
     variant: "blue",
-    thumbnail: 6,
-  },
-  {
-    id: "safereq",
-    title: "Safereq",
-    description:
-      "A requirements framework for safe AI deployment. Defines testable safety specifications and validation protocols for production ML systems.",
-    tags: ["AI Safety", "Framework", "Testing"],
-    github: "https://github.com/ashioyajotham/safereq",
-    variant: "gold",
-    thumbnail: 7,
+    thumbnail: "/projects/road-6.png",
   },
   {
     id: "thinkaloud",
@@ -113,17 +123,7 @@ export const PROJECTS: Project[] = [
     tags: ["Interpretability", "Reasoning", "Research"],
     github: "https://github.com/ashioyajotham/thinkaloud",
     variant: "pink",
-    thumbnail: 8,
-  },
-  {
-    id: "kenya-ml",
-    title: "Kenya ML Community",
-    description:
-      "Building and nurturing the machine learning community in Kenya. Connecting researchers, organizing reading groups, and fostering collaboration.",
-    tags: ["Community", "ML", "Education"],
-    link: "https://github.com/ashioyajotham/kenya-ml",
-    variant: "green",
-    thumbnail: 9,
+    thumbnail: "/projects/road-8.png",
   },
 ];
 
@@ -189,7 +189,7 @@ export interface QuestEntry {
 export const QUEST_LOG: QuestEntry[] = [
   {
     date: "2025-01",
-    text: "Researching circuit-level interpretability for safety-relevant features at Bluedot",
+    text: "Researching circuit-level interpretability for safety-relevant features at ILINA",
     status: "active",
     icon: "🔬",
   },

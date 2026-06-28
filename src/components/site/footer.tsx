@@ -65,7 +65,7 @@ export function Footer() {
             {/* Right */}
             <div className="text-center sm:text-right">
               <p className="font-terminal text-xs text-px-gray italic">
-                &ldquo;The best way to predict the future is to interpret it beautifully.&rdquo;
+                &ldquo;The best way to predict the future is to interpret it.&rdquo;
               </p>
               <p className="font-terminal text-xs text-px-dim mt-1">
                 <span className="pixel-float inline-block">🐘</span> ashioyajotham
