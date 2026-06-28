@@ -1,13 +1,5 @@
 // ═══════════ SITE DATA ═══════════
 
-export const TYPING_PHRASES = [
-  "AI Safety Researcher",
-  "Mechanistic Interpretability",
-  "Chain-of-Thought Faithfulness",
-  "Google Developer Expert",
-  "Open Source Contributor",
-];
-
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Research", href: "#research" },
@@ -26,8 +18,8 @@ export const SOCIAL_LINKS = {
 };
 
 export const TITLES = [
-  { label: "Google Developer Expert", abbr: "GDE", field: "AI" },
-  { label: "GDG Pwani", abbr: "GDG", field: "Community Lead" },
+  { label: "Google Developer Expert", abbr: "GDE", field: "AI", link: "https://developers.google.com/community/experts" },
+  { label: "GDG Pwani", abbr: "GDG", field: "Partnerships Lead", link: "https://gdg.community.dev/gdg-pwani" },
 ];
 
 export interface Project {

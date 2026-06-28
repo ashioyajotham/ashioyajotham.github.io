@@ -52,9 +52,12 @@ export function About() {
             {/* Title badges */}
             <div className="mt-8 flex flex-wrap gap-3">
               {TITLES.map((t) => (
-                <div
+                <a
                   key={t.label}
-                  className="pixel-card-gold pixel-card p-3 sm:p-4 flex items-start gap-3"
+                  href={t.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-card-gold pixel-card p-3 sm:p-4 flex items-start gap-3 no-underline"
                 >
                   <span className="font-pixel text-xs text-px-gold mt-1">
                     ★
@@ -70,7 +73,7 @@ export function About() {
                       {t.field}
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
