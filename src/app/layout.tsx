@@ -21,7 +21,7 @@ const vt323 = VT323({
 export const metadata: Metadata = {
   title: "Ashioya Jotham Victor — AI Safety Researcher",
   description:
-    "Machine Learning Researcher focused on AI safety, reasoning mechanisms, and interpretability. Google Developer Expert (GDE) - AI. Exploring technical AI safety at Bluedot.",
+    "Researcher focused on mechanistic interpretability, chain-of-thought reasoning, and AI alignment. Google Developer Expert (GDE) - AI. Jr Research Fellow at ILINA Program.",
   keywords: [
     "AI Safety",
     "Machine Learning",
@@ -29,7 +29,8 @@ export const metadata: Metadata = {
     "AI Alignment",
     "Google Developer Expert",
     "GDE",
-    "Bluedot",
+    "ILINA Program",
+    "Jr Research Fellow",
     "Mechanistic Interpretability",
     "Chain-of-Thought",
     "GDG Pwani",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ashioya Jotham Victor — AI Safety Researcher",
     description:
-      "ML Researcher focused on AI safety, mechanistic interpretability, and chain-of-thought faithfulness.",
+      "Researcher focused on mechanistic interpretability, chain-of-thought reasoning, and AI alignment.",
     url: "https://ashioyajotham.github.io",
     siteName: "Ashioya Jotham Victor",
     type: "website",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ashioya Jotham Victor — AI Safety Researcher",
     description:
-      "ML Researcher focused on AI safety, mechanistic interpretability, and chain-of-thought faithfulness.",
+      "Researcher focused on mechanistic interpretability, chain-of-thought reasoning, and AI alignment.",
     creator: "@ashioyajotham_",
   },
 };

@@ -4,6 +4,6 @@
 // Replace the placeholder below with your real key.
 
 export const CONTACT_CONFIG = {
-  accessKey: "YOUR_WEB3FORMS_KEY",
+  accessKey: "966cc5a3-f493-4913-b994-88c7f173f9ee",
   endpoint: "https://api.web3forms.com/submit",
 };

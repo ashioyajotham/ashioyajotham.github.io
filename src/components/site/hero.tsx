@@ -44,13 +44,16 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className={`pixel-tag no-underline ${
-              t.abbr === "GDE" ? "pixel-tag-gold" : "pixel-tag-blue"
+              t.abbr === "GDE"
+                ? "pixel-tag-gold"
+                : t.abbr === "GDG"
+                  ? "pixel-tag-blue"
+                  : "pixel-tag-pink"
             }`}
           >
             {t.abbr} — {t.field}
           </a>
         ))}
-        <span className="pixel-tag">Bluedot</span>
       </div>
 
       {/* CTA Buttons */}

@@ -18,8 +18,9 @@ export const SOCIAL_LINKS = {
 };
 
 export const TITLES = [
-  { label: "Google Developer Expert", abbr: "GDE", field: "AI", link: "https://developers.google.com/community/experts" },
+  { label: "Google Developer Expert", abbr: "GDE", field: "AI", link: "https://g.dev/ashioyajotham" },
   { label: "GDG Pwani", abbr: "GDG", field: "Partnerships Lead", link: "https://gdg.community.dev/gdg-pwani" },
+  { label: "ILINA Program", abbr: "ILINA", field: "Jr Research Fellow", link: "https://www.ilinaprogram.org/team" },
 ];
 
 export interface Project {

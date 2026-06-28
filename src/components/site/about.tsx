@@ -3,6 +3,12 @@
 import { ScrollReveal } from "./scroll-reveal";
 import { TITLES } from "./data";
 
+const TITLE_COLORS: Record<string, { card: string; text: string }> = {
+  GDE: { card: "pixel-card-gold pixel-card", text: "text-px-gold" },
+  GDG: { card: "pixel-card-blue pixel-card", text: "text-px-blue" },
+  ILINA: { card: "pixel-card-pink pixel-card", text: "text-px-pink" },
+};
+
 export function About() {
   return (
     <section id="about" className="py-16 sm:py-24 px-4 sm:px-6">
@@ -19,62 +25,52 @@ export function About() {
             <div className="space-y-4">
               <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
                 I&apos;m <span className="text-px-green font-bold">Ashioya Jotham Victor</span>, a
-                Machine Learning Researcher focused on{" "}
-                <span className="text-px-gold">AI safety</span>,{" "}
-                <span className="text-px-blue">mechanistic interpretability</span>, and{" "}
-                <span className="text-px-pink">chain-of-thought faithfulness</span>.
-              </p>
-              <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
-                Currently exploring technical AI safety at{" "}
-                <span className="text-px-green">Bluedot</span>, where I work on
-                understanding how neural networks form safety-relevant representations
-                and developing methods to ensure AI systems remain aligned with
-                human intentions as they scale.
-              </p>
-              <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
-                I&apos;m passionate about building the AI safety research community
-                in Africa. As a{" "}
-                <span className="text-px-gold">Google Developer Expert for AI</span> and{" "}
-                <span className="text-px-blue">GDG Pwani community lead</span>,
-                I organize workshops, mentor researchers, and create spaces for
-                rigorous technical discussion on making AI systems safer and more
-                interpretable.
-              </p>
-              <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
+                researcher passionate about making AI systems more interpretable and safe.
                 My work sits at the intersection of{" "}
-                <span className="text-px-green">rigorous research</span> and{" "}
-                <span className="text-px-blue">open-source tooling</span> — I believe
-                safety research should be transparent, reproducible, and accessible
-                to researchers everywhere.
+                <span className="text-px-gold">mechanistic interpretability</span>,{" "}
+                <span className="text-px-blue">chain-of-thought reasoning</span>, and{" "}
+                <span className="text-px-pink">AI alignment</span>.
+              </p>
+              <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
+                Currently investigating how faithful chain-of-thought reasoning emerges
+                in transformer models — probing not just what models say, but whether their
+                internal computations actually reflect the reasoning they output.
+              </p>
+              <p className="font-terminal text-lg sm:text-xl text-px-white leading-relaxed">
+                I believe that understanding the mechanistic basis of reasoning is crucial
+                for building AI systems we can truly trust.
               </p>
             </div>
 
-            {/* Title badges */}
+            {/* Roles */}
             <div className="mt-8 flex flex-wrap gap-3">
-              {TITLES.map((t) => (
-                <a
-                  key={t.label}
-                  href={t.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pixel-card-gold pixel-card p-3 sm:p-4 flex items-start gap-3 no-underline"
-                >
-                  <span className="font-pixel text-xs text-px-gold mt-1">
-                    ★
-                  </span>
-                  <div>
-                    <div className="font-pixel text-xs text-px-gold">
-                      {t.abbr}
+              {TITLES.map((t) => {
+                const colors = TITLE_COLORS[t.abbr] || TITLE_COLORS.GDE;
+                return (
+                  <a
+                    key={t.label}
+                    href={t.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${colors.card} p-3 sm:p-4 flex items-start gap-3 no-underline`}
+                  >
+                    <span className={`font-pixel text-xs ${colors.text} mt-1`}>
+                      ★
+                    </span>
+                    <div>
+                      <div className={`font-pixel text-xs ${colors.text}`}>
+                        {t.abbr}
+                      </div>
+                      <div className="font-terminal text-base text-px-gray mt-1">
+                        {t.label}
+                      </div>
+                      <div className="font-terminal text-sm text-px-dim">
+                        {t.field}
+                      </div>
                     </div>
-                    <div className="font-terminal text-base text-px-gray mt-1">
-                      {t.label}
-                    </div>
-                    <div className="font-terminal text-sm text-px-dim">
-                      {t.field}
-                    </div>
-                  </div>
-                </a>
-              ))}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Terminal-style location & links */}
