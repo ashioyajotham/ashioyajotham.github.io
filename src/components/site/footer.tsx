@@ -62,10 +62,12 @@ export function Footer() {
               </a>
             </div>
 
-            {/* Right */}
-            <div className="text-center sm:text-right">
-              <p className="font-terminal text-xs text-px-gold italic">
-                &ldquo;We attribute their success to divine benevolence.&rdquo;
+            {/* Right — full Noam quote */}
+            <div className="text-center sm:text-right max-w-xs">
+              <p className="font-terminal text-xs text-px-gray italic leading-relaxed">
+                &ldquo;We offer no explanation as to why these architectures
+                seem to work; we attribute their success, as all else, to
+                divine benevolence.&rdquo;
               </p>
               <p className="font-terminal text-xs text-px-dim mt-1">
                 &mdash;{" "}
@@ -74,13 +76,9 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="now-link"
-                  style={{ color: "var(--px-gold)" }}
                 >
                   Noam Shazeer
                 </a>
-              </p>
-              <p className="font-terminal text-xs text-px-dim mt-1">
-                <span className="pixel-float inline-block">🐘</span> ashioyajotham
               </p>
             </div>
           </div>

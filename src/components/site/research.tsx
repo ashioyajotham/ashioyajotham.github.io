@@ -6,7 +6,6 @@ import {
   RESEARCH_BELIEFS,
   RESEARCH_ARC,
   NOAM_QUOTE,
-  PUBLICATIONS,
 } from "./data";
 
 const COLOR_MAP = {
@@ -42,8 +41,62 @@ export function Research() {
           </p>
         </ScrollReveal>
 
+        {/* ═══ THE FOUNDATIONAL QUOTE — Shazeer ═══ */}
+        <ScrollReveal delay={50}>
+          <div
+            className="p-6 sm:p-10 mb-10 border-2 relative overflow-hidden"
+            style={{
+              background: "var(--px-white)",
+              color: "var(--px-bg)",
+              borderColor: "var(--px-green)",
+              boxShadow: `8px 8px 0 0 var(--px-green)`,
+            }}
+          >
+            {/* Large quotation mark decoration */}
+            <span
+              className="absolute top-2 left-3 sm:top-3 sm:left-4 font-terminal leading-none select-none"
+              style={{
+                fontSize: "4rem",
+                color: "var(--px-green)",
+                opacity: 0.25,
+              }}
+            >
+              &ldquo;
+            </span>
+
+            <blockquote className="font-terminal text-lg sm:text-xl md:text-2xl italic leading-relaxed mb-5 relative z-10">
+              We offer no explanation as to why these architectures seem to
+              work; we attribute their success, as all else, to divine
+              benevolence.
+            </blockquote>
+
+            <div
+              className="flex flex-wrap items-center gap-2 font-terminal text-sm relative z-10"
+              style={{ color: "var(--px-dim)" }}
+            >
+              <span>&mdash; Noam Shazeer,</span>
+              <a
+                href="https://arxiv.org/abs/2002.05202"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="now-link"
+              >
+                GLU Variants Improve Transformer
+              </a>
+              <span>(2020)</span>
+            </div>
+
+            <p
+              className="font-terminal text-xs mt-4 relative z-10 italic"
+              style={{ color: "var(--px-green)", opacity: 0.7 }}
+            >
+              &gt; This is the starting point for everything I do.
+            </p>
+          </div>
+        </ScrollReveal>
+
         {/* Hero: intro + beliefs panel */}
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={150}>
           <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 mb-12">
             {/* Intro text */}
             <div>
@@ -105,7 +158,7 @@ export function Research() {
                 ))}
               </ul>
               <a
-                href="https://open.substack.com/pub/ashioyajotham/p/my-research-ethos-for-alignment-and"
+                href="https://ashioyajotham.substack.com/p/my-research-ethos-for-alignment-and"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-terminal text-sm mt-4 inline-block hover:underline"
@@ -117,40 +170,8 @@ export function Research() {
           </div>
         </ScrollReveal>
 
-        {/* Noam Shazeer quote banner — prominently highlighted */}
-        <ScrollReveal delay={200}>
-          <div
-            className="p-6 sm:p-8 mb-12 border-2"
-            style={{
-              background: "var(--px-white)",
-              color: "var(--px-bg)",
-              borderColor: "var(--px-gold)",
-              boxShadow: `6px 6px 0 0 var(--px-gold)`,
-            }}
-          >
-            <blockquote className="font-terminal text-lg sm:text-xl italic leading-relaxed mb-4">
-              &ldquo;We offer no explanation as to why these architectures
-              seem to work; we attribute their success, as all else, to
-              divine benevolence.&rdquo;
-            </blockquote>
-            <div className="flex flex-wrap items-center gap-2 font-terminal text-sm" style={{ color: "var(--px-dim)" }}>
-              <span>&mdash; Noam Shazeer,</span>
-              <a
-                href="https://arxiv.org/abs/2002.05202"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-                style={{ color: "var(--px-gold)" }}
-              >
-                GLU Variants Improve Transformer
-              </a>
-              <span>(2020)</span>
-            </div>
-          </div>
-        </ScrollReveal>
-
         {/* How I Got Here — arc narrative */}
-        <ScrollReveal delay={250}>
+        <ScrollReveal delay={200}>
           <h3 className="font-pixel text-xs text-px-blue mb-6">
             HOW I GOT HERE
           </h3>
@@ -158,7 +179,7 @@ export function Research() {
 
         <div className="space-y-6 mb-12">
           {RESEARCH_ARC.map((entry, i) => (
-            <ScrollReveal key={entry.year} delay={300 + i * 100}>
+            <ScrollReveal key={entry.year} delay={250 + i * 100}>
               <div className="flex gap-4">
                 <span className="font-pixel text-px-dim text-xs mt-1 flex-shrink-0 w-12 text-right">
                   {entry.year}
@@ -182,7 +203,7 @@ export function Research() {
         <hr className="pixel-divider mb-12" />
 
         {/* Research interests grid */}
-        <ScrollReveal delay={200}>
+        <ScrollReveal delay={150}>
           <h3 className="font-pixel text-xs text-px-green mb-6">
             CORE AREAS OF INVESTIGATION
           </h3>
@@ -192,7 +213,7 @@ export function Research() {
           {RESEARCH_INTERESTS.map((interest, i) => {
             const colors = COLOR_MAP[interest.color];
             return (
-              <ScrollReveal key={interest.title} delay={250 + i * 100}>
+              <ScrollReveal key={interest.title} delay={200 + i * 80}>
                 <div className={`${colors.card} p-5 sm:p-6 h-full`}>
                   <div className="flex items-start gap-3 mb-3">
                     <span className="font-pixel text-xs text-px-dim">
@@ -214,7 +235,7 @@ export function Research() {
         </div>
 
         {/* Research Diary box */}
-        <ScrollReveal delay={300}>
+        <ScrollReveal delay={250}>
           <div className="pixel-card p-5 sm:p-6">
             <h3 className="font-pixel text-xs text-px-green mb-2">
               &#128221; RESEARCH DIARY

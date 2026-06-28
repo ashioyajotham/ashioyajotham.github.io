@@ -140,18 +140,32 @@ export interface Publication {
 
 export const PUBLICATIONS: Publication[] = [
   {
-    title: "Democratizing Quantitative Trading in African Markets",
-    venue: "AIBF 2025",
+    title: "AkiliCode-14B: Repair-Oriented Post-Training for an Open 14B Code Model",
+    venue: "Technical Report",
     year: 2025,
-    authors: "Victor Ashioya",
-    link: "https://openreview.net/forum?id=yyNP1L26c6",
+    authors: "Victor Ashioya et al.",
+    link: "https://www.researchgate.net/publication/405521818_AkiliCode-14B_Repair-Oriented_Post-Training_for_an_Open_14B_Code_Model_Technical_Report",
   },
   {
-    title: "Enhancing HIV Testing Indicator Reporting",
-    venue: "DSAI Journal",
+    title: "Sauti TTS: A Swahili Text-to-Speech Technical Report",
+    venue: "Technical Report",
+    year: 2025,
+    authors: "Victor Ashioya et al.",
+    link: "https://www.researchgate.net/publication/407031923_Sauti_TTS_A_Swahili_Text-to-Speech_Technical_Report",
+  },
+  {
+    title: "Sauti STT V1: Swahili Automatic Speech Recognition Performance and Error Analysis",
+    venue: "Technical Report",
     year: 2024,
-    authors: "Victor Ashioya",
-    link: "https://conferences.kabarak.ac.ke/index.php/dsai/issue/view/15",
+    authors: "Victor Ashioya et al.",
+    link: "https://www.researchgate.net/publication/404295687_Sauti_STT_V1_A_Technical_Report_on_Swahili_Automatic_Speech_Recognition_Performance_and_Error_Analysis",
+  },
+  {
+    title: "Sauti ASR Technical Report",
+    venue: "Technical Report",
+    year: 2024,
+    authors: "Victor Ashioya et al.",
+    link: "https://www.researchgate.net/publication/405474468_Sauti_ASR_Technical_Report",
   },
   {
     title: "The Future Remains Unsupervised",
@@ -173,16 +187,58 @@ export const ESSAYS: Essay[] = [
   {
     title: "AI Priesthood vs AI Pluralism",
     description:
-      "On builders, clerics, and the future of intelligence. Every major technological revolution produces two kinds of institutions — and AI is no different.",
-    date: "2026-02-04",
-    link: "https://ashioyajotham.substack.com",
+      "On builders, clerics, and the future of intelligence. Every major technological revolution produces two kinds of institutions \u2014 and AI is no different.",
+    date: "2026-02",
+    link: "https://ashioyajotham.substack.com/p/ai-priesthood-vs-ai-pluralism",
+  },
+  {
+    title: "Why I Pivoted from Alignment to Control",
+    description:
+      "On moving from \"how do we make AI want what we want?\" to \"how do we keep AI from doing what we don\u2019t want?\"",
+    date: "2026-01",
+    link: "https://ashioyajotham.substack.com/p/why-i-pivoted-from-alignment-to-control",
   },
   {
     title: "My Research Ethos for Alignment & Interpretability",
     description:
       "Builder, anti-doomer, anti-gnostic. I approach AI alignment and interpretability as fields of repair, not apocalyptic forecasting.",
-    date: "2026-01-12",
-    link: "https://open.substack.com/pub/ashioyajotham/p/my-research-ethos-for-alignment-and",
+    date: "2026-01",
+    link: "https://ashioyajotham.substack.com/p/my-research-ethos-for-alignment-and",
+  },
+  {
+    title: "Detecting Unfaithful Chain of Thought",
+    description:
+      "Technical deep-dive into detecting when language models produce reasoning traces that don\u2019t reflect their actual computation.",
+    date: "2025",
+    link: "https://ashioyajotham.substack.com/p/detecting-unfaithful-chain-of-thought",
+  },
+  {
+    title: "The Anticipatory Disruption Trap",
+    description:
+      "On the failure mode of preemptively optimizing for disruptions that never materialize.",
+    date: "2025",
+    link: "https://ashioyajotham.substack.com/p/the-anticipatory-disruption-trap",
+  },
+  {
+    title: "State of AI 2025",
+    description:
+      "A personal take on where the field stands and where it\u2019s drifting.",
+    date: "2025",
+    link: "https://ashioyajotham.substack.com/p/state-of-ai-2025",
+  },
+  {
+    title: "RLHF\u2019d to Death",
+    description:
+      "On the homogenizing effects of RLHF and what we lose when we optimize too hard for \"helpfulness.\"",
+    date: "2024",
+    link: "https://ashioyajotham.substack.com/p/rlhfd-to-death",
+  },
+  {
+    title: "Inverse Scaling",
+    description:
+      "When bigger models get worse \u2014 and what that tells us about the limits of scale.",
+    date: "2024",
+    link: "https://ashioyajotham.substack.com/p/inverse-scaling",
   },
 ];
 
@@ -299,9 +355,15 @@ export const RESEARCH_INTERESTS = [
     color: "gold" as const,
   },
   {
+    title: "AI Control",
+    description:
+      "Developing techniques to ensure powerful AI systems remain controllable even when they exceed human-level capabilities. Practical guardrails over theoretical guarantees.",
+    color: "pink" as const,
+  },
+  {
     title: "Scalable Oversight",
     description:
       "Developing methods to reliably evaluate and supervise AI systems that may exceed human-level capabilities in narrow domains.",
-    color: "pink" as const,
+    color: "green" as const,
   },
 ];

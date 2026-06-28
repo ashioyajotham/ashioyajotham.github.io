@@ -85,3 +85,24 @@ Stage Summary:
 - Essays now show 2 real Substack essays from essays.html
 - Research section completely redesigned with rich content from research.html (hero, beliefs, quote, timeline, diary)
 - Noam Shazeer quote highlighted prominently in gold banner in research section AND in footer (linked to GLU paper)
+---
+Task ID: 3
+Agent: main
+Task: Fix footer quote, update publications/essays with real data, make Noam quote foundational, add AI Control
+
+Work Log:
+- Fetched Substack profile — found 8 published essays with exact URLs
+- Fetched ResearchGate profile — found 4 technical reports (AkiliCode-14B, Sauti TTS, Sauti STT V1, Sauti ASR)
+- Updated data.ts PUBLICATIONS: dropped HIV and Quant papers, added 4 ResearchGate papers + kept "The Future Remains Unsupervised"
+- Updated data.ts ESSAYS: expanded from 2 to 8 essays, all linking to exact Substack post URLs
+- Added AI Control as 5th research interest (pink), Scalable Oversight moved to green
+- Footer: full Noam Shazeer quote (not truncated), link uses blue now-link class instead of blinding gold
+- Research section: moved Noam quote to VERY TOP as foundational statement with green border, large decorative quotation mark, and "> This is the starting point for everything I do." annotation
+- Lint clean, browser verified all sections, zero console errors
+
+Stage Summary:
+- Noam Shazeer quote now the hero moment of the research section — green border, large text, foundational annotation
+- 5 real publications from ResearchGate (HIV/Quant dropped)
+- 8 real essays from Substack with exact post links
+- AI Control added as research interest
+- Footer readable with full quote and blue link color
