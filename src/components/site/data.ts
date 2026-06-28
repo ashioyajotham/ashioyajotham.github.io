@@ -64,6 +64,7 @@ export const PROJECTS: Project[] = [
       "How superposition in MLP layers affects the model's ability to maintain faithful intermediate reasoning states.",
     tags: ["SAE", "Feature Extraction"],
     variant: "gold",
+    thumbnail: "/projects/superposition.png",
     badge: "EXPLORATION",
   },
   {
@@ -73,6 +74,7 @@ export const PROJECTS: Project[] = [
       "Lightweight library for structured activation patching experiments with clean abstractions for causal tracing.",
     tags: ["Python", "PyTorch", "Open Source"],
     variant: "green",
+    thumbnail: "/projects/patchlib.png",
     badge: "IN DEVELOPMENT",
   },
   {
